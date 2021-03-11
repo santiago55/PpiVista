@@ -85,8 +85,8 @@ function EditarIngreso(props) {
                                 type="radio"
                                 name="tipo"
                                 value="Fijo"
-                                onChange={e=>{guardarCategoria(e.target.value)}}
-                                defaultChecked={(ingreso.tipo=== "Fijo")}
+                                onChange={e => { guardarCategoria(e.target.value) }}
+                                defaultChecked={(ingreso.tipo === "Fijo")}
                             />
                             <label className="form-check-label">
                                 Fijo
@@ -98,8 +98,8 @@ function EditarIngreso(props) {
                                 type="radio"
                                 name="tipo"
                                 value="Extraordinario"
-                                onChange={e=>{guardarCategoria(e.target.value)}}
-                                defaultChecked={(ingreso.tipo=== "Extraordinario")}
+                                onChange={e => { guardarCategoria(e.target.value) }}
+                                defaultChecked={(ingreso.tipo === "Extraordinario")}
                             />
                             <label className="form-check-label">
                                 Extraordinario
