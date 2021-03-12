@@ -10,6 +10,7 @@ import AgregarEgreso from '../pages/AgregarEgresos'
 import Cookies from 'universal-cookie';
 import axios from 'axios'
 import Egresos from '../pages/Egresos'
+import CrearUsuario from '../pages/CrearUsuario'
 import '../css/login.css';
 function Routes() {
 const cookies = new Cookies();
@@ -39,6 +40,7 @@ return (
     <BrowserRouter>
         <Switch>
             <Route exact path="/" component={Login} />
+            <Route exact path="/crear-usuario" component={CrearUsuario}/>
             <Layout>
                 <Route exact path="/ingresos" render={() => (
                     <Ingresos

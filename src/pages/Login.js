@@ -77,7 +77,7 @@ function Login({history}) {
         <div id="formFooter">
           <Link className="underlineHover" to="#">Olvide la contraseña</Link>
           <br></br>
-          <Link className="underlineHover" to="#">Registrarse</Link>
+          <Link className="underlineHover" to="/crear-usuario">Registrarse</Link>
         </div>
       </div>
     </div>
