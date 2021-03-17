@@ -42,6 +42,9 @@ function Menu({history}) {
                     <NavLink to="/agregar-egreso" className="nav-link"><strong>Agregar egreso</strong></NavLink>
                 </li>
                 <li className="nav-item">
+                    <NavLink to="/movimiento-ingresos" className="nav-link"><strong>Movimientos</strong></NavLink>
+                </li>
+                <li className="nav-item">
                     <NavLink to="/" className="nav-link" onClick={cerrarSesion}><strong>Cerrar Sesión</strong></NavLink>
                 </li>
             </ul>

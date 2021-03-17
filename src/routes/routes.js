@@ -11,12 +11,14 @@ import Cookies from 'universal-cookie';
 import axios from 'axios'
 import Egresos from '../pages/Egresos'
 import CrearUsuario from '../pages/CrearUsuario'
+import GraficaIngresos from '../pages/GraficaIngresos'
 import '../css/login.css';
 function Routes() {
 const cookies = new Cookies();
 const [ingresos, guardarIngresos] = useState([]);
 const [egresos, guardarEgresos] = useState([]);
 const [ejecutar, guardarEjecutar] = useState(true);
+const [tipo, guardarTipos]= useState([])
 useEffect(() => {
     if (ejecutar) {
         const consultarIngresos = async () => {
@@ -30,8 +32,16 @@ useEffect(() => {
             const resultado = await axios.get(url);
             guardarEgresos(resultado.data.egresosBD);
         }
+
+        const consultarTiposIngreso = async () => {
+            let url = `http://localhost:3001/tipo`;
+            const resultado = await axios.get(url);
+            guardarTipos(resultado.data.tipoBD);
+        }
+
         consultarEgresos();
         consultarIngresos();
+        consultarTiposIngreso();
         guardarEjecutar(false);
     }
 }, [ejecutar]);
@@ -42,6 +52,13 @@ return (
             <Route exact path="/" component={Login} />
             <Route exact path="/crear-usuario" component={CrearUsuario}/>
             <Layout>
+            <Route exact path="/movimiento-ingresos" render={() => (
+                    <GraficaIngresos
+                        ingresos={ingresos}
+                        tipo={tipo}
+                        guardarEjecutar={guardarEjecutar}
+                    />
+                )} />
                 <Route exact path="/ingresos" render={() => (
                     <Ingresos
                         ingresos={ingresos}

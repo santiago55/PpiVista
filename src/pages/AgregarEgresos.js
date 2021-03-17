@@ -105,7 +105,7 @@ return (
                     onChange={guardarDatos}
                 />
             </div>
-            <legend className="text-center">Tipo de ingreso:</legend>
+            <legend className="text-center">Tipo de Egreso:</legend>
             <div className="text-center">
                 <div className="form-check form-check-inline">
                     <input
