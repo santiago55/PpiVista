@@ -6,26 +6,15 @@ defaults.global.legend.position = 'bottom'
 const GraficaIngresos = ({ ingresos, tipo }) => {
     let tipos = tipo.map(tipos => tipos.tipo)
     let total = [];
-    let contF = 0;
-    let contE = 0;
-    //const cantidadTipo = ingresos.map(ingreso => ingreso.tipo)
-    // .filter((pos)=> pos.tipo === tipos)
-    tipos.forEach(tipo => {
-        let cantidadTipo = ingresos.filter(ingreso => ingreso.tipo === tipo)
-        let prueba = cantidadTipo.map(cantidadtipo => cantidadtipo.tipo)
-        prueba.forEach(pruebita => {
-            if (pruebita === 'Fijo') {
-                contF = contF + 1;
-            }
-            if (pruebita === 'Extraordinario') {
-                contE = contE + 1;
-            }
-        })
-    })
+
+    const contF = ingresos.filter(ingreso => ingreso.tipo === 'Fijo')
+        .reduce((total) => total += 1, 0)
+
+    const contE = ingresos.filter(ingreso => ingreso.tipo === 'Extraordinario')
+        .reduce((total) => total += 1, 0)
 
     total.push(contF, contE);
-    let totaltotal = contF+contE;
-
+    let totaltotal = contF + contE;
 
     return (
         <div>
