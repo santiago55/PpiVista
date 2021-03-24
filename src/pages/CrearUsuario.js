@@ -3,9 +3,11 @@ import '../css/CrearUsuario.css'
 import axios from 'axios'
 import Swal from 'sweetalert2';
 import { withRouter } from 'react-router-dom'
+import Error from '../pages/Error'
 
 function CrearUsuario({ history }) {
 
+    const[error, guardarError]=useState(false);
     const [usuario, guardarUsuario] = useState({
         nombre: '',
         apellidos: '',
@@ -35,6 +37,8 @@ function CrearUsuario({ history }) {
             });
 
             if (result.status === 200) {
+                //guardarError(true);
+                alert("Confirmar usuario");
                 Swal.fire(
                     'Usuario Creado',
                     'El Usuario se ha creado exitosamente',
@@ -99,6 +103,7 @@ function CrearUsuario({ history }) {
                         value="Crear usuario"
                     />
                 </form>
+                {(error) ? <Error mensaje='Se le envio un correo a su correo personal para confirmar usuario'/> : null}
             </div>
         </div>
     );
