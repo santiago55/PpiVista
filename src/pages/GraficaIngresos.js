@@ -1,48 +1,46 @@
+import { findAllByDisplayValue } from '@testing-library/dom';
 import React from 'react'
 import { Bar, defaults } from 'react-chartjs-2'
+import '../css/ingresos.css';
 defaults.global.tooltips.enabled = false
 defaults.global.legend.position = 'bottom'
+
 
 const GraficaIngresos = ({ ingresos, tipo }) => {
     let tipos = tipo.map(tipos => tipos.tipo)
     let total = [];
 
     const contF = ingresos.filter(ingreso => ingreso.tipo === 'Fijo')
-        .reduce((total) => total += 1, 0)
+        .reduce((total, ingreso) => total += ingreso.valor, 0)
+     
 
     const contE = ingresos.filter(ingreso => ingreso.tipo === 'Extraordinario')
-        .reduce((total) => total += 1, 0)
+        .reduce((total, ingreso) => total += ingreso.valor, 0)
 
     total.push(contF, contE);
     let totaltotal = contF + contE;
 
     return (
-        <div>
+        <div id="container" >
             <Bar
                 data={{
                     labels: tipos,
 
                     datasets: [
                         {
-                            label: `Cantidad Ingresos por tipo ${totaltotal}`,
+                          
                             data: total,
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
+                               'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)'
                             ],
                             borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
+                               'rgba(255, 99, 132, 1)',
+                               'rgba(54, 162, 235, 1)'
                             ],
                             borderWidth: 1,
+
+                            label: `Cantidad Ingresos por tipo ${totaltotal}`,
                         },
 
                     ],
@@ -55,7 +53,7 @@ const GraficaIngresos = ({ ingresos, tipo }) => {
                         yAxes: [
                             {
                                 ticks: {
-                                    beginAtZero: true,
+                                    beginAtZero: findAllByDisplayValue,
                                 },
                             },
                         ],

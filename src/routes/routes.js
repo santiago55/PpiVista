@@ -54,9 +54,9 @@ return (
             <Layout>
             <Route exact path="/movimiento-ingresos" render={() => (
                     <GraficaIngresos
-                        ingresos={ingresos}
-                        tipo={tipo}
-                        guardarEjecutar={guardarEjecutar}
+                    ingresos={ingresos}
+                    tipo={tipo}
+                    guardarEjecutar={guardarEjecutar}
                     />
                 )} />
                 <Route exact path="/ingresos" render={() => (
