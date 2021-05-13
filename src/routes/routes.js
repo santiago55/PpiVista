@@ -19,6 +19,7 @@ const [ingresos, guardarIngresos] = useState([]);
 const [egresos, guardarEgresos] = useState([]);
 const [ejecutar, guardarEjecutar] = useState(true);
 const [tipo, guardarTipos]= useState([])
+const [cat, guardarCat] = useState([]);
 useEffect(() => {
     if (ejecutar) {
         const consultarIngresos = async () => {
@@ -38,7 +39,19 @@ useEffect(() => {
             const resultado = await axios.get(url);
             guardarTipos(resultado.data.tipoBD);
         }
-
+        const consultarCat = async () => {
+            try {
+                const headers = {
+                    'token': cookies.get('token')
+                }
+    
+                let result = await axios.get('http://localhost:3001/categoria', { "headers": headers });
+                guardarCat(result.data.categoriaBD);
+            } catch (err) {
+                console.log("Error en la consultad categoria" + err);
+            }
+        }
+        consultarCat();
         consultarEgresos();
         consultarIngresos();
         consultarTiposIngreso();
@@ -73,6 +86,7 @@ return (
                 <Route exact path="/agregar-egreso" render={()=>(
                     <AgregarEgreso
                     guardarEjecutar={guardarEjecutar}
+                    categoria={cat}
                     />
                 )}/>
                 <Route exact path="/editar-egreso/:id" render={(props)=>{
