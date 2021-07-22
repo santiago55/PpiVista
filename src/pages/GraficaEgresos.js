@@ -1,13 +1,13 @@
 import { findAllByDisplayValue } from '@testing-library/dom';
 import React from 'react'
-import { Bar, defaults } from 'react-chartjs-2'
+import { Pie, defaults } from 'react-chartjs-2'
 import '../css/ingresos.css';
 defaults.global.tooltips.enabled = false
 defaults.global.legend.position = 'bottom'
 
 
 const GraficaEgresos = ({ egresos, tipo , categoria}) => {
-    let tipos = tipo.map(tipos => tipos.tipo)
+    let categorias = categoria.map(categoria => categoria.categoria)
     let total = [];
 
     const contF = egresos.filter(egresos => egresos.tipo === 'Fijo')
@@ -20,11 +20,12 @@ const GraficaEgresos = ({ egresos, tipo , categoria}) => {
     total.push(contF, contE);
     let totaltotal = contF + contE;
 
+
     return (
         <div id="container" >
-            <Bar
+            <Pie
                 data={{
-                    labels: categoria,
+                    labels: categorias,
 
                     datasets: [
                         {
