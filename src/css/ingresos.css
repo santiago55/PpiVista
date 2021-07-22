@@ -36,3 +36,10 @@ label {
 #carta{
   border-radius: 5%;
 }
+
+ #container {
+  width: 50%;
+  height: 70%;
+  margin: 0;
+  padding: 0;
+}

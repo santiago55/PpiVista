@@ -1,32 +1,31 @@
 import { findAllByDisplayValue } from '@testing-library/dom';
 import React from 'react'
-import { Bar, defaults } from 'react-chartjs-2'
+import { Pie, defaults } from 'react-chartjs-2'
 import '../css/ingresos.css';
 defaults.global.tooltips.enabled = false
 defaults.global.legend.position = 'bottom'
 
 
-const GraficaIngresos = ({ ingresos, tipo }) => {
-    let tipos = tipo.map(tipos => tipos.tipo)
+const GraficaEgresos = ({ egresos, tipo , categoria}) => {
+    let categorias = categoria.map(categoria => categoria.categoria)
     let total = [];
 
-    const contF = ingresos.filter(ingreso => ingreso.tipo === 'Fijo')
-        .reduce((total, ingreso) => total += ingreso.valor, 0)
+    const contF = egresos.filter(egresos => egresos.tipo === 'Fijo')
+        .reduce((total, egresos) => total += egresos.valor, 0)
      
 
-    const contE = ingresos.filter(ingreso => ingreso.tipo === 'Extraordinario')
-        .reduce((total, ingreso) => total += ingreso.valor, 0)
+    const contE = egresos.filter(egresos => egresos.tipo === 'Extraordinario')
+        .reduce((total, egresos) => total += egresos.valor, 0)
 
     total.push(contF, contE);
     let totaltotal = contF + contE;
 
+
     return (
-
-
-        <div>
-            <Bar
+        <div id="container" >
+            <Pie
                 data={{
-                    labels: tipos,
+                    labels: categorias,
 
                     datasets: [
                         {
@@ -42,7 +41,7 @@ const GraficaIngresos = ({ ingresos, tipo }) => {
                             ],
                             borderWidth: 1,
 
-                            label: `Cantidad Ingresos por tipo ${totaltotal}`,
+                            label: `Cantidad Egresos por tipo ${totaltotal}`,
                         },
 
                     ],
@@ -71,4 +70,4 @@ const GraficaIngresos = ({ ingresos, tipo }) => {
     )
 }
 
-export default GraficaIngresos
+export default GraficaEgresos

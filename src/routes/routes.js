@@ -12,114 +12,122 @@ import axios from 'axios'
 import Egresos from '../pages/Egresos'
 import CrearUsuario from '../pages/CrearUsuario'
 import GraficaIngresos from '../pages/GraficaIngresos'
+import GraficaEgresos from '../pages/GraficaEgresos'
 import '../css/login.css';
 function Routes() {
-const cookies = new Cookies();
-const [ingresos, guardarIngresos] = useState([]);
-const [egresos, guardarEgresos] = useState([]);
-const [ejecutar, guardarEjecutar] = useState(true);
-const [tipo, guardarTipos]= useState([])
-const [cat, guardarCat] = useState([]);
-useEffect(() => {
-    if (ejecutar) {
-        const consultarIngresos = async () => {
-            let url = `http://localhost:3001/ingresos/${cookies.get('id')}`;
-            const resultado = await axios.get(url);
-            guardarIngresos(resultado.data.ingresoBD);
-        }
-
-        const consultarEgresos = async () => {
-            let url = `http://localhost:3001/egresos/${cookies.get('id')}`;
-            const resultado = await axios.get(url);
-            guardarEgresos(resultado.data.egresosBD);
-        }
-
-        const consultarTiposIngreso = async () => {
-            let url = `http://localhost:3001/tipo`;
-            const resultado = await axios.get(url);
-            guardarTipos(resultado.data.tipoBD);
-        }
-        const consultarCat = async () => {
-            try {
-                const headers = {
-                    'token': cookies.get('token')
-                }
-    
-                let result = await axios.get('http://localhost:3001/categoria', { "headers": headers });
-                guardarCat(result.data.categoriaBD);
-                console.log(result);
-            } catch (err) {
-                console.log("Error en la consultad categoria" + err);
+    const cookies = new Cookies();
+    const [ingresos, guardarIngresos] = useState([]);
+    const [egresos, guardarEgresos] = useState([]);
+    const [ejecutar, guardarEjecutar] = useState(true);
+    const [tipo, guardarTipos] = useState([])
+    const [cat, guardarCat] = useState([]);
+    useEffect(() => {
+        if (ejecutar) {
+            const consultarIngresos = async () => {
+                let url = `http://localhost:3001/ingresos/${cookies.get('id')}`;
+                const resultado = await axios.get(url);
+                guardarIngresos(resultado.data.ingresoBD);
             }
-        }
-        consultarCat();
-        consultarEgresos();
-        consultarIngresos();
-        consultarTiposIngreso();
-        guardarEjecutar(false);
-    }
-}, [ejecutar]);
 
-return (
-    <BrowserRouter>
-        <Switch>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/crear-usuario" component={CrearUsuario}/>
-            <Layout>
-            <Route exact path="/movimiento-ingresos" render={() => (
-                    <GraficaIngresos
-                        ingresos={ingresos}
-                        tipo={tipo}
-                        guardarEjecutar={guardarEjecutar}
-                    />
-                )} />
-                <Route exact path="/ingresos" render={() => (
-                    <Ingresos
-                        ingresos={ingresos}
-                        guardarEjecutar={guardarEjecutar}
-                    />
-                )} />
-                <Route exact path="/agregar-ingreso" render={() => (
-                    <AgregarIngreso
-                        guardarEjecutar={guardarEjecutar}
-                    />
-                )} />
-                <Route exact path="/agregar-egreso" render={()=>(
-                    <AgregarEgreso
-                    guardarEjecutar={guardarEjecutar}
-                    categoria={cat}
-                    />
-                )}/>
-                <Route exact path="/editar-egreso/:id" render={(props)=>{
-                    const Idegreso = props.match.params.id;
-                    const egreso = egresos.filter(egreso => egreso._id === Idegreso);
-                    return (
-                        <EditarEgresos
-                        egreso={egreso[0]}
-                        guardarEjecutar={guardarEjecutar}
-                        />
-                    );
-                }}
-                />
-                <Route exact path="/editar-ingreso/:id" render={(props) => {
-                    const Idingreo = props.match.params.id;
-                    const ingreso = ingresos.filter(ingreso => ingreso._id === Idingreo);
-                    return (
-                        <EditarIngresos
-                            ingreso={ingreso[0]}
+            const consultarEgresos = async () => {
+                let url = `http://localhost:3001/egresos/${cookies.get('id')}`;
+                const resultado = await axios.get(url);
+                guardarEgresos(resultado.data.egresosBD);
+            }
+
+            const consultarTiposIngreso = async () => {
+                let url = `http://localhost:3001/tipo`;
+                const resultado = await axios.get(url);
+                guardarTipos(resultado.data.tipoBD);
+            }
+            const consultarCat = async () => {
+                try {
+                    const headers = {
+                        'token': cookies.get('token')
+                    }
+
+                    let result = await axios.get('http://localhost:3001/categoria', { "headers": headers });
+                    guardarCat(result.data.categoriaBD);
+                } catch (err) {
+                    console.log("Error en la consulta de categoria" + err);
+                }
+            }
+            consultarCat();
+            consultarEgresos();
+            consultarIngresos();
+            consultarTiposIngreso();
+            guardarEjecutar(false);
+        }d
+    }, [ejecutar]);
+
+    return (
+        <BrowserRouter>
+            <Switch>
+                <Route exact path="/" component={Login} />
+                <Route exact path="/crear-usuario" component={CrearUsuario} />
+                <Layout>
+                    <Route exact path="/movimiento-ingresos" render={() => (
+                        <GraficaIngresos
+                            ingresos={ingresos}
+                            tipo={tipo}
                             guardarEjecutar={guardarEjecutar}
                         />
-                    )
-                }} />
-                <Route exact path="/egresos" render={() => (
-                    <Egresos
-                        egresos={egresos}
-                        guardarEjecutar={guardarEjecutar}
+                    )} />
+                    <Route exact path="/movimiento-egresos" render={() => (
+                        <GraficaEgresos
+                            egresos={egresos}
+                            tipo={tipo}
+                            categoria={cat}
+                            guardarEjecutar={guardarEjecutar}
+                        />
+                    )} />
+                    <Route exact path="/ingresos" render={() => (
+                        <Ingresos
+                            ingresos={ingresos}
+                            guardarEjecutar={guardarEjecutar}
+                        />
+                    )} />
+                    <Route exact path="/agregar-ingreso" render={() => (
+                        <AgregarIngreso
+                            guardarEjecutar={guardarEjecutar}
+                        />
+                    )} />
+                    <Route exact path="/agregar-egreso" render={() => (
+                        <AgregarEgreso
+                            guardarEjecutar={guardarEjecutar}
+                            categoria={cat}
+                        />
+                    )} />
+                    <Route exact path="/editar-egreso/:id" render={(props) => {
+                        const Idegreso = props.match.params.id;
+                        const egreso = egresos.filter(egreso => egreso._id === Idegreso);
+                        return (
+                            <EditarEgresos
+                                egreso={egreso[0]}
+                                guardarEjecutar={guardarEjecutar}
+                            />
+                        );
+                    }}
                     />
-                )} />
-            </Layout>
-        </Switch>
-    </BrowserRouter>
-);
+                    <Route exact path="/editar-ingreso/:id" render={(props) => {
+                        const Idingreo = props.match.params.id;
+                        const ingreso = ingresos.filter(ingreso => ingreso._id === Idingreo);
+                        return (
+                            <EditarIngresos
+                                ingreso={ingreso[0]}
+                                guardarEjecutar={guardarEjecutar}
+                            />
+                        )
+                    }} />
+                    <Route exact path="/egresos" render={() => (
+                        <Egresos
+                            egresos={egresos}
+                            guardarEjecutar={guardarEjecutar}
+                        />
+                    )} />
+                </Layout>
+            </Switch>
+        </BrowserRouter>
+    );
 }
 export default Routes;
