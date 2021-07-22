@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import { Bar, defaults } from 'react-chartjs-2'
 defaults.global.tooltips.enabled = false
 defaults.global.legend.position = 'bottom'
@@ -28,6 +28,8 @@ const GraficaIngresos = ({ ingresos, tipo }) => {
 
 
     return (
+        <Fragment>
+
         <div>
             <Bar
                 data={{
@@ -79,6 +81,7 @@ const GraficaIngresos = ({ ingresos, tipo }) => {
                 }}
             />
         </div>
+        </Fragment>
     )
 }
 

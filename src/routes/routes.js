@@ -47,6 +47,7 @@ useEffect(() => {
     
                 let result = await axios.get('http://localhost:3001/categoria', { "headers": headers });
                 guardarCat(result.data.categoriaBD);
+                console.log(result);
             } catch (err) {
                 console.log("Error en la consultad categoria" + err);
             }
