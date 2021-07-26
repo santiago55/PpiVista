@@ -13,6 +13,7 @@ import Egresos from '../pages/Egresos'
 import CrearUsuario from '../pages/CrearUsuario'
 import GraficaIngresos from '../pages/GraficaIngresos'
 import GraficaEgresos from '../pages/GraficaEgresos'
+import AgregarAhorro from '../pages/AgregarAhorro'
 import '../css/login.css';
 function Routes() {
     const cookies = new Cookies();
@@ -90,6 +91,12 @@ function Routes() {
                     <Route exact path="/agregar-ingreso" render={() => (
                         <AgregarIngreso
                             guardarEjecutar={guardarEjecutar}
+                        />
+                    )} />
+                     <Route exact path="/agregar-ahorro" render={() => (
+                        <AgregarAhorro
+                            guardarEjecutar={guardarEjecutar}
+                            categoria={cat}
                         />
                     )} />
                     <Route exact path="/agregar-egreso" render={() => (

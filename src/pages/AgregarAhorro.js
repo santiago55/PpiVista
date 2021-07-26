@@ -3,52 +3,50 @@ import Cookies from 'universal-cookie';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import '../css/select.css';
-import { withRouter } from 'react-router-dom'
 import ListaCategoria from '../pages/ListaCategoria';
-function AgregarEgreso({ guardarEjecutar, history, categoria }) {
+import { withRouter } from 'react-router-dom'
+function AgregarAhorro({ guardarEjecutar, history, categoria }) {
 
     const cookies = new Cookies();
-    const [egreso, guardarEgreso] = useState({
+    const [ahorro, guardarAhorro] = useState({
         descripcion: '',
-        valor: '',
         date: '',
+        valor: '',
         categoria: '',
-        tipo: '',
         usuario: cookies.get('id')
     });
 
     const guardarDatos = e => {
         e.preventDefault();
-        guardarEgreso({
-            ...egreso,
+        guardarAhorro({
+            ...ahorro,
             [e.target.name]: e.target.value
         });
-        console.log(egreso);
+        console.log(ahorro);
     }
 
-    const crearEgreso = async (e) => {
+    const crearAhorro = async (e) => {
         e.preventDefault();
         const headers = {
             'token': cookies.get('token')
         }
         try {
 
-            const result = await axios.post('http://localhost:3001/egresos', {
-                descripcion: egreso.descripcion,
-                valor: egreso.valor,
-                date: egreso.date,
-                categoria: egreso.categoria,
-                tipo: egreso.tipo,
-                usuario: egreso.usuario
+            const result = await axios.post('http://localhost:3001/ahorros', {
+                descripcion: ahorro.descripcion,
+                valor: ahorro.valor,
+                date: ahorro.date,
+                categoria: ahorro.categoria,
+                usuario: ahorro.usuario
             }, { "headers": headers });
             if (result.status === 200) {
                 Swal.fire(
-                    'Egreso Creado',
-                    'El egreso se ha creado exitosamente',
+                    'Ahorro Creado',
+                    'El Ahorro se ha creado exitosamente',
                     'success'
                 )
                 guardarEjecutar(true);
-                history.push('/egresos');
+                history.push('/Ahorros');
             }
         } catch (err) {
             console.log(err);
@@ -64,9 +62,9 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
     return (
         <div className="col-md-8 mx-auto py-5">
             <div className="col-md-8 mx-auto ">
-                <h1 className="text-center">Agregar Egreso</h1>
+                <h1 className="text-center">Agregar Ahorro</h1>
                 <form
-                    onSubmit={crearEgreso}
+                    onSubmit={crearAhorro}
                     className="mt-5"
                 >
                     <label>Descripción</label>
@@ -89,6 +87,16 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                             onChange={guardarDatos}
                         />
                     </div>
+                    <label>Fecha</label>
+
+                    <div className="form-group">
+                        <input
+                            type="date"
+                            className="form-control"
+                            name="date"
+                            onChange={guardarDatos}
+                        />
+                    </div>
                     <label>Categoria</label>
                     <div className="form-group">
                         <select
@@ -100,52 +108,14 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                             {categoria.map(catego => (
                                 <ListaCategoria
                                     categori={catego}
-                                />
-                            )
-                            )
+                                />))
                             }
                         </select>
                     </div>
-                    <label>Fecha</label>
-
-                    <div className="form-group">
-                        <input
-                            type="date"
-                            className="form-control"
-                            name="date"
-                            onChange={guardarDatos}
-                        />
-                    </div>
-                    <legend className="text-center">Tipo de Egreso:</legend>
-                    <div className="text-center">
-                        <div className="form-check form-check-inline">
-                            <input
-                                className="form-check-input"
-                                type="radio"
-                                name="tipo"
-                                value="Fijo"
-                                onChange={guardarDatos}
-                            />
-                            <label className="form-check-label">
-                                Fijo
-                            </label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                            <input
-                                className="form-check-input"
-                                type="radio"
-                                name="tipo"
-                                value="Extraordinario"
-                                onChange={guardarDatos}
-                            />
-                            <label className="form-check-label">
-                                Extraordinario
-                            </label>
-                        </div>
-                    </div>
+                    
                     <input type="submit"
                         className="font-weight-bold text-uppercase mt-5 btn btn-primary btn-block py-3"
-                        value="Agregar Egreso"
+                        value="Agregar Ahorro"
                     />
                 </form>
             </div>
@@ -154,4 +124,4 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
 
 }
 
-export default withRouter(AgregarEgreso);
+export default withRouter(AgregarAhorro);
