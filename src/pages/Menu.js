@@ -49,7 +49,15 @@ function Menu({ history }) {
                         </NavDropdown>
                     </li>
 
-                   <li> <NavLink to="/agregar-ahorro" className="nav-link"><strong>Ahorros</strong> </NavLink></li>
+                    <li className="nav-item dropdown">
+                        <NavDropdown title="Ahorros">
+
+                            <li><NavDropdown.Item href="/ahorro" className="dropdown-item"><strong>Lista Ahorros</strong></NavDropdown.Item></li>
+                            <li><NavDropdown.Item href="/agregar-ahorro" className="dropdown-item"><strong>Agregar Ahorro</strong></NavDropdown.Item></li>
+                            <li><NavDropdown.Item href="/movimiento-egresos" className="dropdown-item"><strong>Movimientos Egresos</strong></NavDropdown.Item></li>
+                        </NavDropdown>
+                    </li>
+
                     <li className="nav-item">
                         <NavLink to="/" className="nav-link" onClick={cerrarSesion}><strong>Cerrar Sesión</strong></NavLink>
                     </li>
