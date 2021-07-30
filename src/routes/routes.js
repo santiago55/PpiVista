@@ -10,14 +10,17 @@ import AgregarEgreso from '../pages/AgregarEgresos'
 import Cookies from 'universal-cookie';
 import axios from 'axios'
 import Egresos from '../pages/Egresos'
+import Ahorros from '../pages/ListaAhorros'
 import CrearUsuario from '../pages/CrearUsuario'
 import GraficaIngresos from '../pages/GraficaIngresos'
 import GraficaEgresos from '../pages/GraficaEgresos'
+import AgregarAhorro from '../pages/AgregarAhorro'
 import '../css/login.css';
 function Routes() {
     const cookies = new Cookies();
     const [ingresos, guardarIngresos] = useState([]);
     const [egresos, guardarEgresos] = useState([]);
+    const [ahorros, guardarAhorro] = useState([]);
     const [ejecutar, guardarEjecutar] = useState(true);
     const [tipo, guardarTipos] = useState([])
     const [cat, guardarCat] = useState([]);
@@ -33,6 +36,12 @@ function Routes() {
                 let url = `http://localhost:3001/egresos/${cookies.get('id')}`;
                 const resultado = await axios.get(url);
                 guardarEgresos(resultado.data.egresosBD);
+            }
+
+            const consultarAhorro = async () => {
+                let url = `http://localhost:3001/ahorros/${cookies.get('id')}`;
+                const resultado = await axios.get(url);
+                guardarAhorro(resultado.data.ahorroBD);
             }
 
             const consultarTiposIngreso = async () => {
@@ -54,6 +63,7 @@ function Routes() {
             }
             consultarCat();
             consultarEgresos();
+            consultarAhorro();
             consultarIngresos();
             consultarTiposIngreso();
             guardarEjecutar(false);
@@ -89,6 +99,19 @@ function Routes() {
                     )} />
                     <Route exact path="/agregar-ingreso" render={() => (
                         <AgregarIngreso
+                            guardarEjecutar={guardarEjecutar}
+                        />
+                    )} />
+                    <Route exact path="/agregar-ahorro" render={() => (
+                        <AgregarAhorro
+                            guardarEjecutar={guardarEjecutar}
+                            categoria={cat}
+                        />
+                    )} />
+
+                    <Route exact path="/ahorro" render={() => (
+                        <Ahorros
+                            ahorros={ahorros}
                             guardarEjecutar={guardarEjecutar}
                         />
                     )} />
