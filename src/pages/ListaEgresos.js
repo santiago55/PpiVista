@@ -31,6 +31,7 @@ function ListaEgresos(props) {
             guardarEjecutar(true);
         })
     }
+    console.log(egreso);
     let fechaOrganizada = egreso.date.split('T')[0];
     fechaOrganizada = fechaOrganizada.split('-').reverse().join('-');
     return (        
