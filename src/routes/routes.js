@@ -10,11 +10,13 @@ import AgregarEgreso from '../pages/AgregarEgresos'
 import Cookies from 'universal-cookie';
 import axios from 'axios'
 import Egresos from '../pages/Egresos'
-import Ahorros from '../pages/ListaAhorros'
+import Ahorros from '../pages/Ahorros'
 import CrearUsuario from '../pages/CrearUsuario'
 import GraficaIngresos from '../pages/GraficaIngresos'
 import GraficaEgresos from '../pages/GraficaEgresos'
 import AgregarAhorro from '../pages/AgregarAhorro'
+import OlvideContraseña from '../pages/OlvideContraseña';
+import OlvideContraseñaCamb from '../pages/OlvideContraseCamb';
 import '../css/login.css';
 function Routes() {
     const cookies = new Cookies();
@@ -24,6 +26,8 @@ function Routes() {
     const [ejecutar, guardarEjecutar] = useState(true);
     const [tipo, guardarTipos] = useState([])
     const [cat, guardarCat] = useState([]);
+    const [email, guardarEmail] = useState('');
+    const [olvide,GuardarOlvide]=useState([]);
     useEffect(() => {
         if (ejecutar) {
             const consultarIngresos = async () => {
@@ -42,6 +46,7 @@ function Routes() {
                 let url = `http://localhost:3001/ahorros/${cookies.get('id')}`;
                 const resultado = await axios.get(url);
                 guardarAhorro(resultado.data.ahorroBD);
+
             }
 
             const consultarTiposIngreso = async () => {
@@ -70,12 +75,27 @@ function Routes() {
         }
     }, [ejecutar]);
 
+
     return (
         <BrowserRouter>
             <Switch>
                 <Route exact path="/" component={Login} />
                 <Route exact path="/crear-usuario" component={CrearUsuario} />
+                <Route exact path="/recuperarContraseña" render={() => (
+                        <OlvideContraseña
+                            guardarEmail={guardarEmail}
+                            email={email}
+                            olvide={olvide}
+                            GuardarOlvide={GuardarOlvide}
+                        />
+                    )} />
+                    <Route exact path="/CambiarContraseñaCorreo" render={() => (
+                        <OlvideContraseñaCamb
+                            olvide={olvide}
+                        />
+                    )} />
                 <Layout>
+                    
                     <Route exact path="/movimiento-ingresos" render={() => (
                         <GraficaIngresos
                             ingresos={ingresos}
@@ -168,10 +188,6 @@ export default Routes;
 
 
 
- 
- 
-
- 
 
 
 
@@ -204,30 +220,33 @@ export default Routes;
 
 
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
