@@ -21,7 +21,7 @@ function EditarEgreso({ egreso, guardarEjecutar,history }) {
             "token":cookies.get('token')
         }
         try{
-        const result = await axios.put(`http://localhost:3001/egresos/${egreso._id}`,
+        const result = await axios.put(`https://ppibackend-53pyqym6t-santiago55.vercel.app/egresos/${egreso._id}`,
             {
                 descripcion: descripcionRef.current.value,
                 valor: valorRef.current.value,

@@ -21,7 +21,7 @@ function EditarIngreso(props) {
             return;
         }
 
-        let url = `http://localhost:3001/ingresos/${ingreso._id}`;
+        let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/ingresos/${ingreso._id}`;
 
         try {
             let resultado = await axios.put(url, {
@@ -85,8 +85,8 @@ function EditarIngreso(props) {
                                 type="radio"
                                 name="tipo"
                                 value="Fijo"
-                                onChange={e=>{guardarCategoria(e.target.value)}}
-                                defaultChecked={(ingreso.tipo=== "Fijo")}
+                                onChange={e => { guardarCategoria(e.target.value) }}
+                                defaultChecked={(ingreso.tipo === "Fijo")}
                             />
                             <label className="form-check-label">
                                 Fijo
@@ -98,8 +98,8 @@ function EditarIngreso(props) {
                                 type="radio"
                                 name="tipo"
                                 value="Extraordinario"
-                                onChange={e=>{guardarCategoria(e.target.value)}}
-                                defaultChecked={(ingreso.tipo=== "Extraordinario")}
+                                onChange={e => { guardarCategoria(e.target.value) }}
+                                defaultChecked={(ingreso.tipo === "Extraordinario")}
                             />
                             <label className="form-check-label">
                                 Extraordinario

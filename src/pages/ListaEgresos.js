@@ -25,12 +25,13 @@ function ListaEgresos(props) {
             cancelButtonText: 'Cancelar'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                let url = `http://localhost:3001/egresos/${egreso._id}`;
+                let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/egresos/${egreso._id}`;
                 await axios.delete(url, { "headers": headers });
             }
             guardarEjecutar(true);
         })
     }
+    console.log(egreso);
     let fechaOrganizada = egreso.date.split('T')[0];
     fechaOrganizada = fechaOrganizada.split('-').reverse().join('-');
     return (        
