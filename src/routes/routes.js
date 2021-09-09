@@ -31,26 +31,26 @@ function Routes() {
     useEffect(() => {
         if (ejecutar) {
             const consultarIngresos = async () => {
-                let url = `http://localhost:3001/ingresos/${cookies.get('id')}`;
+                let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/ingresos/${cookies.get('id')}`;
                 const resultado = await axios.get(url);
                 guardarIngresos(resultado.data.ingresoBD);
             }
 
             const consultarEgresos = async () => {
-                let url = `http://localhost:3001/egresos/${cookies.get('id')}`;
+                let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/egresos/${cookies.get('id')}`;
                 const resultado = await axios.get(url);
                 guardarEgresos(resultado.data.egresosBD);
             }
 
             const consultarAhorro = async () => {
-                let url = `http://localhost:3001/ahorros/${cookies.get('id')}`;
+                let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/ahorros/${cookies.get('id')}`;
                 const resultado = await axios.get(url);
                 guardarAhorro(resultado.data.ahorroBD);
 
             }
 
             const consultarTiposIngreso = async () => {
-                let url = `http://localhost:3001/tipo`;
+                let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/tipo`;
                 const resultado = await axios.get(url);
                 guardarTipos(resultado.data.tipoBD);
             }
@@ -60,7 +60,7 @@ function Routes() {
                         'token': cookies.get('token')
                     }
 
-                    let result = await axios.get('http://localhost:3001/categoria', { "headers": headers });
+                    let result = await axios.get('https://ppibackend-53pyqym6t-santiago55.vercel.app/categoria', { "headers": headers });
                     guardarCat(result.data.categoriaBD);
                 } catch (err) {
                     console.log("Error en la consulta de categoria" + err);

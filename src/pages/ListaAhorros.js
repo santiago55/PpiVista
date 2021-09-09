@@ -24,7 +24,7 @@ function ListaAhorros({ ahorro1, guardarEjecutar }) {
             cancelButtonText: 'Cancelar'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                let url = `http://localhost:3001/ahorros/${ahorro1._id}`;
+                let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/ahorros/${ahorro1._id}`;
                 await axios.delete(url, { "headers": headers });
             }
             guardarEjecutar(true);
