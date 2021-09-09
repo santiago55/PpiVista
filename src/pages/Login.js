@@ -40,7 +40,8 @@ function Login({history}) {
   useEffect(()=>{
     if(ejec){
     if(cookies.get('username')){
-      history.replace("./ingresos");
+      history.push('/ingresos');
+     // history.replace("./ingresos");
     }
   }
   guardarEjec(false);
