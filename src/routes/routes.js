@@ -10,7 +10,7 @@ import AgregarEgreso from '../pages/AgregarEgresos'
 import Cookies from 'universal-cookie';
 import axios from 'axios'
 import Egresos from '../pages/Egresos'
-import Ahorros from '../pages/ListaAhorros'
+import Ahorros from '../pages/Ahorros'
 import CrearUsuario from '../pages/CrearUsuario'
 import GraficaIngresos from '../pages/GraficaIngresos'
 import GraficaEgresos from '../pages/GraficaEgresos'
