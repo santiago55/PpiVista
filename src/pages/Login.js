@@ -15,7 +15,7 @@ function Login({history}) {
   const iniciarSesion = async (e) => {
 
     e.preventDefault();
-    await axios.post('http://localhost:3001/login', {
+    await axios.post('https://ppibackend-53pyqym6t-santiago55.vercel.app/login', {
       userName,
       password
     })
@@ -75,7 +75,7 @@ function Login({history}) {
           />
         </form>
         <div id="formFooter">
-          <Link className="underlineHover" to="#">Olvide la contraseña</Link>
+          <Link className="underlineHover" to="/recuperarContraseña">Olvide la contraseña</Link>
           <br></br>
           <Link className="underlineHover" to="/crear-usuario">Registrarse</Link>
         </div>

@@ -26,7 +26,7 @@ function AgregarIngreso({ guardarEjecutar,  history}) {
         const headers = {
             'token': cookies.get('token')
         }
-        let url = `http://localhost:3001/ingresos`;
+        let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/ingresos`;
         try {
             const resultado = await axios.post(url, {
                 descripcion: ingreso.descripcion,
