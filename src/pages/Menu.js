@@ -7,7 +7,6 @@ import '../css/navegacion.css'
 
 function Menu({ history }) {
     const cookies = new Cookies();
-
     const cerrarSesion = () => {
 
         cookies.remove('id', { path: "/" });
@@ -54,7 +53,7 @@ function Menu({ history }) {
 
                             <li><NavDropdown.Item href="/ahorro" className="dropdown-item"><strong>Lista Ahorros</strong></NavDropdown.Item></li>
                             <li><NavDropdown.Item href="/agregar-ahorro" className="dropdown-item"><strong>Agregar Ahorro</strong></NavDropdown.Item></li>
-                            <li><NavDropdown.Item href="/movimiento-egresos" className="dropdown-item"><strong>Movimientos Egresos</strong></NavDropdown.Item></li>
+                            {/*<li><NavDropdown.Item href="/movimiento-egresos" className="dropdown-item"><strong>Movimientos Egresos</strong></NavDropdown.Item></li>*/}
                         </NavDropdown>
                     </li>
 

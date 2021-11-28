@@ -21,7 +21,9 @@ const GraficaIngresos = ({ ingresos, tipo }) => {
     let totaltotal = contF + contE;
 
     return (
-        <div id="container" >
+
+
+        <div>
             <Bar
                 data={{
                     labels: tipos,

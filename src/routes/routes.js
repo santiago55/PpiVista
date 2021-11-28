@@ -10,13 +10,14 @@ import AgregarEgreso from '../pages/AgregarEgresos'
 import Cookies from 'universal-cookie';
 import axios from 'axios'
 import Egresos from '../pages/Egresos'
-import Ahorros from '../pages/ListaAhorros'
+import Ahorros from '../pages/Ahorros'
 import CrearUsuario from '../pages/CrearUsuario'
 import GraficaIngresos from '../pages/GraficaIngresos'
 import GraficaEgresos from '../pages/GraficaEgresos'
-import AgregarAhorro from '../pages/AgregarAhorro';
 import AgregarCreditos from '../pages/AgregarCreditos'
-
+import AgregarAhorro from '../pages/AgregarAhorro'
+import OlvideContraseña from '../pages/OlvideContraseña';
+import OlvideContraseñaCamb from '../pages/OlvideContraseCamb';
 import '../css/login.css';
 function Routes() {
     const cookies = new Cookies();
@@ -28,24 +29,27 @@ function Routes() {
     const [tipo, guardarTipos] = useState([])
     const [cat, guardarCat] = useState([]);
     const [tipoCredi, guardarTipoCred] = useState([]);
+    const [email, guardarEmail] = useState('');
+    const [olvide,GuardarOlvide]=useState([]);
     useEffect(() => {
         if (ejecutar) {
             const consultarIngresos = async () => {
-                let url = `http://localhost:3001/ingresos/${cookies.get('id')}`;
+                let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/ingresos/${cookies.get('id')}`;
                 const resultado = await axios.get(url);
                 guardarIngresos(resultado.data.ingresoBD);
             }
 
             const consultarEgresos = async () => {
-                let url = `http://localhost:3001/egresos/${cookies.get('id')}`;
+                let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/egresos/${cookies.get('id')}`;
                 const resultado = await axios.get(url);
                 guardarEgresos(resultado.data.egresosBD);
             }
 
             const consultarAhorro = async () => {
-                let url = `http://localhost:3001/ahorros/${cookies.get('id')}`;
+                let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/ahorros/${cookies.get('id')}`;
                 const resultado = await axios.get(url);
                 guardarAhorro(resultado.data.ahorroBD);
+
             }
 
             const consultarCredito = async () => {
@@ -54,7 +58,7 @@ function Routes() {
                 guardarCreditos(resultado.data.creditoBD);
             }
             const consultarTiposIngreso = async () => {
-                let url = `http://localhost:3001/tipo`;
+                let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/tipo`;
                 const resultado = await axios.get(url);
                 guardarTipos(resultado.data.tipoBD);
             }
@@ -70,7 +74,7 @@ function Routes() {
                         'token': cookies.get('token')
                     }
 
-                    let result = await axios.get('http://localhost:3001/categoria', { "headers": headers });
+                    let result = await axios.get('https://ppibackend-53pyqym6t-santiago55.vercel.app/categoria', { "headers": headers });
                     guardarCat(result.data.categoriaBD);
                 } catch (err) {
                     console.log("Error en la consulta de categoria" + err);
@@ -87,12 +91,27 @@ function Routes() {
         }
     }, [ejecutar]);
 
+
     return (
         <BrowserRouter>
             <Switch>
                 <Route exact path="/" component={Login} />
                 <Route exact path="/crear-usuario" component={CrearUsuario} />
+                <Route exact path="/recuperarContraseña" render={() => (
+                        <OlvideContraseña
+                            guardarEmail={guardarEmail}
+                            email={email}
+                            olvide={olvide}
+                            GuardarOlvide={GuardarOlvide}
+                        />
+                    )} />
+                    <Route exact path="/CambiarContraseñaCorreo" render={() => (
+                        <OlvideContraseñaCamb
+                            olvide={olvide}
+                        />
+                    )} />
                 <Layout>
+                    
                     <Route exact path="/movimiento-ingresos" render={() => (
                         <GraficaIngresos
                             ingresos={ingresos}
@@ -179,3 +198,79 @@ function Routes() {
     );
 }
 export default Routes;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

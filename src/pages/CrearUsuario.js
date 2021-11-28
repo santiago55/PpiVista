@@ -28,7 +28,7 @@ function CrearUsuario({ history }) {
     const crearUsuario = async (e) => {
         e.preventDefault();
         try {
-            let result = await axios.post('http://localhost:3001/user', {
+            let result = await axios.post('https://ppibackend-53pyqym6t-santiago55.vercel.app/user', {
                 nombre: usuario.nombre,
                 apellidos: usuario.apellidos,
                 email: usuario.email,
