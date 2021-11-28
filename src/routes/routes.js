@@ -14,16 +14,20 @@ import Ahorros from '../pages/ListaAhorros'
 import CrearUsuario from '../pages/CrearUsuario'
 import GraficaIngresos from '../pages/GraficaIngresos'
 import GraficaEgresos from '../pages/GraficaEgresos'
-import AgregarAhorro from '../pages/AgregarAhorro'
+import AgregarAhorro from '../pages/AgregarAhorro';
+import AgregarCreditos from '../pages/AgregarCreditos'
+
 import '../css/login.css';
 function Routes() {
     const cookies = new Cookies();
     const [ingresos, guardarIngresos] = useState([]);
     const [egresos, guardarEgresos] = useState([]);
     const [ahorros, guardarAhorro] = useState([]);
+    const [creditos, guardarCreditos] = useState([]);
     const [ejecutar, guardarEjecutar] = useState(true);
     const [tipo, guardarTipos] = useState([])
     const [cat, guardarCat] = useState([]);
+    const [tipoCredi, guardarTipoCred] = useState([]);
     useEffect(() => {
         if (ejecutar) {
             const consultarIngresos = async () => {
@@ -44,10 +48,21 @@ function Routes() {
                 guardarAhorro(resultado.data.ahorroBD);
             }
 
+            const consultarCredito = async () => {
+                let url = `http://localhost:3001/creditos/${cookies.get('id')}`;
+                const resultado = await axios.get(url);
+                guardarCreditos(resultado.data.creditoBD);
+            }
             const consultarTiposIngreso = async () => {
                 let url = `http://localhost:3001/tipo`;
                 const resultado = await axios.get(url);
                 guardarTipos(resultado.data.tipoBD);
+            }
+            
+            const consultarTiposCreditos = async () => {
+                let url = `http://localhost:3001/tipocredito/`;
+                const resultado = await axios.get(url);
+                guardarTipoCred(resultado.data.tipoBD);
             }
             const consultarCat = async () => {
                 try {
@@ -66,6 +81,8 @@ function Routes() {
             consultarAhorro();
             consultarIngresos();
             consultarTiposIngreso();
+            consultarTiposCreditos();
+            consultarCredito();
             guardarEjecutar(false);
         }
     }, [ejecutar]);
@@ -115,6 +132,14 @@ function Routes() {
                             guardarEjecutar={guardarEjecutar}
                         />
                     )} />
+
+                    <Route exact path="/agregar-creditos" render={() => (
+                        <AgregarCreditos
+                            guardarEjecutar={guardarEjecutar}
+                            tipoCredito={tipoCredi}
+                        />
+                    )} />
+
                     <Route exact path="/agregar-egreso" render={() => (
                         <AgregarEgreso
                             guardarEjecutar={guardarEjecutar}
