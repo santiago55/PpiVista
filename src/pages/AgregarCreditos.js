@@ -14,7 +14,7 @@ function AgregarCreditos({ guardarEjecutar,  history,tipoCredito}) {
         tipoCredito: '',
         fechaRegistro:'',
         fechaCorte:'',
-        porcjintMens:'',
+        porcentaje:'',
         usuario: cookies.get('id')
     });
 
@@ -39,9 +39,12 @@ function AgregarCreditos({ guardarEjecutar,  history,tipoCredito}) {
                 tipoCredito: credito.tipo,
                 fechaRegistro: credito.fecharegistro,
                 fechaCorte: credito.fechaCorte,
-                porcjintMens: credito.porcentaje,
+                porcentaje: credito.porcentaje,
                 usuario: credito.usuario
             }, { "headers": headers });
+
+            console.log(credito);
+            console.log(headers);
 
             if (resultado.status === 200) {
                 Swal.fire(
@@ -139,7 +142,7 @@ function AgregarCreditos({ guardarEjecutar,  history,tipoCredito}) {
                         <input
                             type="number"
                             className="form-control"
-                            name="porcjintMens"
+                            name="porcentaje"
                             onChange={guardarDatos}
                         />
                     </div>
