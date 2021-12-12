@@ -43,9 +43,6 @@ function AgregarCreditos({ guardarEjecutar,  history,tipoCredito}) {
                 usuario: credito.usuario
             }, { "headers": headers });
 
-            console.log(credito);
-            console.log(headers);
-
             if (resultado.status === 200) {
                 Swal.fire(
                     'Credito Creado',
