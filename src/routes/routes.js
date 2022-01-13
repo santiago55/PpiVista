@@ -14,6 +14,7 @@ import Ahorros from '../pages/Ahorros'
 import CrearUsuario from '../pages/CrearUsuario'
 import GraficaIngresos from '../pages/GraficaIngresos'
 import GraficaEgresos from '../pages/GraficaEgresos'
+import AgregarCreditos from '../pages/AgregarCreditos'
 import AgregarAhorro from '../pages/AgregarAhorro'
 import OlvideContraseña from '../pages/OlvideContraseña';
 import OlvideContraseñaCamb from '../pages/OlvideContraseCamb';
@@ -23,9 +24,11 @@ function Routes() {
     const [ingresos, guardarIngresos] = useState([]);
     const [egresos, guardarEgresos] = useState([]);
     const [ahorros, guardarAhorro] = useState([]);
+    const [creditos, guardarCreditos] = useState([]);
     const [ejecutar, guardarEjecutar] = useState(true);
     const [tipo, guardarTipos] = useState([])
     const [cat, guardarCat] = useState([]);
+    const [tipoCredi, guardarTipoCred] = useState([]);
     const [email, guardarEmail] = useState('');
     const [olvide,GuardarOlvide]=useState([]);
     useEffect(() => {
@@ -49,10 +52,21 @@ function Routes() {
 
             }
 
+            const consultarCredito = async () => {
+                let url = `http://localhost:3001/creditos/${cookies.get('id')}`;
+                const resultado = await axios.get(url);
+                guardarCreditos(resultado.data.creditoBD);
+            }
             const consultarTiposIngreso = async () => {
                 let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/tipo`;
                 const resultado = await axios.get(url);
                 guardarTipos(resultado.data.tipoBD);
+            }
+            
+            const consultarTiposCreditos = async () => {
+                let url = `http://localhost:3001/tipocredito/`;
+                const resultado = await axios.get(url);
+                guardarTipoCred(resultado.data.tipoBD);
             }
             const consultarCat = async () => {
                 try {
@@ -71,6 +85,8 @@ function Routes() {
             consultarAhorro();
             consultarIngresos();
             consultarTiposIngreso();
+            consultarTiposCreditos();
+            consultarCredito();
             guardarEjecutar(false);
         }
     }, [ejecutar]);
@@ -135,6 +151,14 @@ function Routes() {
                             guardarEjecutar={guardarEjecutar}
                         />
                     )} />
+
+                    <Route exact path="/agregar-creditos" render={() => (
+                        <AgregarCreditos
+                            guardarEjecutar={guardarEjecutar}
+                            tipoCredito={tipoCredi}
+                        />
+                    )} />
+
                     <Route exact path="/agregar-egreso" render={() => (
                         <AgregarEgreso
                             guardarEjecutar={guardarEjecutar}
