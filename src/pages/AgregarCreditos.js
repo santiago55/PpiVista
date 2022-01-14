@@ -3,7 +3,7 @@ import Cookies from 'universal-cookie';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { withRouter } from 'react-router-dom'
-import ListaCreditos from '../pages/ListaCreditos';
+import TipoCreditos from '../pages/TipoCreditos';
 function AgregarCreditos({ guardarEjecutar,  history,tipoCredito}) {
 
     const cookies = new Cookies();
@@ -35,9 +35,9 @@ function AgregarCreditos({ guardarEjecutar,  history,tipoCredito}) {
             const resultado = await axios.post(url, {
                 descripcion: credito.descripcion,
                 valor: credito.valor,
-                nroCuotas: credito.cuotas,
-                tipoCredito: credito.tipo,
-                fechaRegistro: credito.fecharegistro,
+                nroCuotas: credito.nroCuotas,
+                tipoCredito: credito.tipoCredito,
+                fechaRegistro: credito.fechaRegistro,
                 fechaCorte: credito.fechaCorte,
                 porcentaje: credito.porcentaje,
                 usuario: credito.usuario
@@ -50,6 +50,8 @@ function AgregarCreditos({ guardarEjecutar,  history,tipoCredito}) {
                     'success'
                 )
                 guardarEjecutar(true);
+                let date=new Date();
+                console.log("Ffechas"+date)
                 history.push('/creditos');
             }
         } catch (error) {
@@ -126,7 +128,7 @@ function AgregarCreditos({ guardarEjecutar,  history,tipoCredito}) {
                         >
                             <option>Seleccione una categoria</option>
                             {tipoCredito.map(tipo => (
-                                <ListaCreditos
+                                <TipoCreditos
                                     credito={tipo}
                                 />
                             )
