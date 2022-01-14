@@ -8,7 +8,7 @@ function Creditos({creditos, guardarEjecutar}) {
             <div className="row">
                 {creditos.map(credito => (
                     <ListaCreditos
-                        key={creditos._id}
+                        key={credito._id}
                         guardarEjecutar={guardarEjecutar}
                         credito={credito}
                     />

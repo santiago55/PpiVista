@@ -25,7 +25,7 @@ function Routes() {
     const [ingresos, guardarIngresos] = useState([]);
     const [egresos, guardarEgresos] = useState([]);
     const [ahorros, guardarAhorro] = useState([]);
-    const [credito, guardarCreditos] = useState([]);
+    const [creditos, guardarCreditos] = useState([]);
     const [ejecutar, guardarEjecutar] = useState(true);
     const [tipo, guardarTipos] = useState([])
     const [cat, guardarCat] = useState([]);
@@ -56,7 +56,7 @@ function Routes() {
             const consultarCredito = async () => {
                 let url = `http://localhost:3001/creditos/${cookies.get('id')}`;
                 const resultado = await axios.get(url);
-                guardarCreditos(resultado.data.creditoBD);
+                guardarCreditos(resultado.data.creditosBD);
             }
             const consultarTiposIngreso = async () => {
                 let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/tipo`;
@@ -162,8 +162,9 @@ function Routes() {
 
                     <Route exact path="/creditos" render={() => (
                         <Creditos
+                            creditos={creditos}
                             guardarEjecutar={guardarEjecutar}
-                            creditos={credito}
+                            
                         />
                     )} />
 

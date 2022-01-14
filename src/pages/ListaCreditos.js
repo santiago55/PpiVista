@@ -8,7 +8,7 @@ import Cookies from 'universal-cookie';
 function ListaCreditos(props) {
 
     const cookies = new Cookies();
-    const { creditos, guardarEjecutar } = props;
+    const { credito, guardarEjecutar } = props;
 
     const eliminarcreditos = id => {
         const headers = {
@@ -25,33 +25,34 @@ function ListaCreditos(props) {
             cancelButtonText: 'Cancelar'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                let url = `http://localhost:3001/creditos/${creditos._id}`;
+                let url = `http://localhost:3001/creditos/${credito._id}`;
                 await axios.delete(url, { "headers": headers });
             }
             guardarEjecutar(true);
         })
     }
-    console.log(creditos);
-    let fechaOrganizada = creditos.fechaRegistro.split('T')[0];
+    console.log(credito);
+    let fechaOrganizada = credito.fechaRegistro.split('T')[0];
     fechaOrganizada = fechaOrganizada.split('-').reverse().join('-');
     return (        
         <div className="col-md-4 p-2">
             <div id="carta" className="card">
                 <div className="card-header d-flex justify-content-between">
-                    <h5>{creditos.descripcion}</h5>
-                    <Link className="btn btn-danger" id="actualizar" to={`/editar-creditos/${creditos._id}`}>Actualizar</Link>
-                </div>
-                <div className="card-body">
-                    <p>Fecha: {fechaOrganizada}</p>
-                    <p>Tipo de creditos: {creditos.tipoCredito}</p>
-                    <p>Valor: ${creditos.valor}</p>
-                    <p>Nro Cuotas: {creditos.nroCuotas}</p>
-                    <p>Categoria: {creditos.categoria}</p>
-                    <p>Porcentaje interes: {creditos.porcentaje}</p>
+                    <h5>{credito.descripcion}</h5>
                     <button type="button" id="eliminar"
                         className="btn btn-danger"
-                        onClick={() => { eliminarcreditos(creditos._id) }}
+                        onClick={() => { eliminarcreditos(credito._id) }}
                     >Eliminar &times;</button>
+                    </div>
+                <div className="card-body">
+                    <p>Fecha: {fechaOrganizada}</p>
+                    <p>Tipo de creditos: {credito.tipoCredito}</p>
+                    <p>Valor: ${credito.valor}</p>
+                    <p>Nro Cuotas: {credito.nroCuotas}</p>
+                    <p>Porcentaje interes: {credito.porcentaje}</p>
+                    <Link className="btn btn-danger" id="actualizar" to={`/editar-creditos/${credito._id}`}>Actualizar</Link>
+                    <Link className="btn btn-danger" id="detalle" to={`/detalle-creditos/${credito._id}`}>Ver detalle</Link>
+                
                 </div>
 
             </div>
