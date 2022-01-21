@@ -17,6 +17,7 @@ import GraficaEgresos from '../pages/GraficaEgresos'
 import AgregarAhorro from '../pages/AgregarAhorro'
 import OlvideContraseña from '../pages/OlvideContraseña';
 import OlvideContraseñaCamb from '../pages/OlvideContraseCamb';
+import CambiarContra from '../pages/CambiarContra';
 import '../css/login.css';
 function Routes() {
     const cookies = new Cookies();
@@ -27,7 +28,7 @@ function Routes() {
     const [tipo, guardarTipos] = useState([])
     const [cat, guardarCat] = useState([]);
     const [email, guardarEmail] = useState('');
-    const [olvide,GuardarOlvide]=useState([]);
+    const [olvide, GuardarOlvide] = useState([]);
     useEffect(() => {
         if (ejecutar) {
             const consultarIngresos = async () => {
@@ -82,20 +83,20 @@ function Routes() {
                 <Route exact path="/" component={Login} />
                 <Route exact path="/crear-usuario" component={CrearUsuario} />
                 <Route exact path="/recuperarContraseña" render={() => (
-                        <OlvideContraseña
-                            guardarEmail={guardarEmail}
-                            email={email}
-                            olvide={olvide}
-                            GuardarOlvide={GuardarOlvide}
-                        />
-                    )} />
-                    <Route exact path="/CambiarContraseñaCorreo" render={() => (
-                        <OlvideContraseñaCamb
-                            olvide={olvide}
-                        />
-                    )} />
+                    <OlvideContraseña
+                        guardarEmail={guardarEmail}
+                        email={email}
+                        olvide={olvide}
+                        GuardarOlvide={GuardarOlvide}
+                    />
+                )} />
+                <Route exact path="/CambiarContraseñaCorreo" render={() => (
+                    <OlvideContraseñaCamb
+                        olvide={olvide}
+                    />
+                )} />
                 <Layout>
-                    
+                    <Route exact path="/cambiar-contraseña" component={CambiarContra} />
                     <Route exact path="/movimiento-ingresos" render={() => (
                         <GraficaIngresos
                             ingresos={ingresos}

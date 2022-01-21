@@ -56,6 +56,11 @@ function Menu({ history }) {
                             {/*<li><NavDropdown.Item href="/movimiento-egresos" className="dropdown-item"><strong>Movimientos Egresos</strong></NavDropdown.Item></li>*/}
                         </NavDropdown>
                     </li>
+                    <li className="nav-item dropdown">
+                        <NavDropdown title="Opciones">
+                            <li><NavDropdown.Item href="/cambiar-contraseña" className="dropdown-item"><strong>Cambiar Contraseña</strong></NavDropdown.Item></li>
+                        </NavDropdown>
+                    </li>
 
                     <li className="nav-item">
                         <NavLink to="/" className="nav-link" onClick={cerrarSesion}><strong>Cerrar Sesión</strong></NavLink>
