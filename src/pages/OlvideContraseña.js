@@ -5,7 +5,6 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 function OlvideContraseña({ guardarEmail, email, GuardarOlvide, olvide }) {
     
-    
     const guardarEmails = e => {
         guardarEmail(e.target.value);
     }

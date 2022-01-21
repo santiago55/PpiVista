@@ -113,11 +113,8 @@ function Routes() {
                     />
                 )} />
                 <Layout>
-<<<<<<< HEAD
                     <Route exact path="/cambiar-contraseña" component={CambiarContra} />
-=======
 
->>>>>>> d134f71799b8173d7aa3aae8031645cac6c561f8
                     <Route exact path="/movimiento-ingresos" render={() => (
                         <GraficaIngresos
                             ingresos={ingresos}
