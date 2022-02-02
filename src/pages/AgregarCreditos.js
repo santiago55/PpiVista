@@ -42,17 +42,47 @@ function AgregarCreditos({ guardarEjecutar,  history,tipoCredito}) {
                 porcentaje: credito.porcentaje,
                 usuario: credito.usuario
             }, { "headers": headers });
-
+                let i = 0;
             if (resultado.status === 200) {
-                Swal.fire(
-                    'Credito Creado',
-                    'El credito se ha creado exitosamente',
-                    'success'
-                )
-                guardarEjecutar(true);
-                let date=new Date();
-                console.log("Ffechas"+date)
-                history.push('/creditos');
+                console.log("ID: "+resultado.data.creditosBD._id)
+                do{
+                    let date = credito.fechaCorte.split('T')[0];
+                    let fechaCorte= parseInt(date.split('-')[1]);
+                    fechaCorte += i+1;
+                    let date_total =credito.fechaCorte.split('-')[0]+"-"+fechaCorte.toString()+"-"+credito.fechaCorte.split('-')[2];
+                    try{
+                        let url = `http://localhost:3001/Detalle`;
+                        const resultado2 = await axios.post(url, {
+                            nroCuotas: i,
+                            valor: 1,
+                            fechaCuota: date_total,
+                            descripcion:'',
+                            estado:'Pendiente',
+                            idCredito:resultado.data.creditosBD._id
+
+                        }, { "headers": headers });
+                        console.log(resultado2);
+                    }catch(err){
+                        console.log(err);
+                    }
+                    i++;
+                }while(i < parseInt(credito.nroCuotas));
+
+
+
+                setTimeout(function(){
+                    Swal.fire(
+                        'Credito Creado',
+                        'El credito se ha creado exitosamente',
+                        'success'
+                    )
+                    
+                    guardarEjecutar(true);
+                    let date=new Date();
+                    console.log("Ffechas"+date)
+                    history.push('/creditos');
+                }, 1000);
+                
             }
         } catch (error) {
             console.log(error);

@@ -20,6 +20,7 @@ import Creditos from '../pages/Creditos'
 import OlvideContraseña from '../pages/OlvideContraseña';
 import OlvideContraseñaCamb from '../pages/OlvideContraseCamb';
 import CambiarContra from '../pages/CambiarContra';
+import DetalleCredito from '../pages/detalleCredito';
 import '../css/login.css';
 function Routes() {
     const cookies = new Cookies();
@@ -70,6 +71,11 @@ function Routes() {
                 const resultado = await axios.get(url);
                 guardarTipoCred(resultado.data.tipoBD);
             }
+            /*const consultarDetalleCredito = async () => {
+                let url = `http://localhost:3001/creditos/${cookies.get('id')}`;
+                const resultado = await axios.get(url);
+                guardarCreditos(resultado.data.creditosBD);
+            }*/
             const consultarCat = async () => {
                 try {
                     const headers = {
@@ -166,7 +172,7 @@ function Routes() {
                         <Creditos
                             creditos={creditos}
                             guardarEjecutar={guardarEjecutar}
-                            
+
                         />
                     )} />
 
@@ -203,6 +209,15 @@ function Routes() {
                             guardarEjecutar={guardarEjecutar}
                         />
                     )} />
+                    <Route exact path="/detalle-creditos/:id" render={(props) => {
+                        const Idcredito = props.match.params.id;
+                        const credito = creditos.filter(egreso => egreso._id === Idcredito);
+                        return (
+                            <DetalleCredito
+                                creditos={credito[0]}
+                            />
+                        );
+                    }} />
                 </Layout>
             </Switch>
         </BrowserRouter>
