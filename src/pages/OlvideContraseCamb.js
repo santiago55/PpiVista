@@ -10,19 +10,24 @@ function OlvideContraseñaCamb({ history }) {
     const [password, guardarPassword] = useState('');
     const [newpassword, guardarPasswordNew] = useState('');
 
+
+    
     const guardarDatosOld = (e) => {
         guardarPassword(e.target.value);
     }
     const guardarDatosNew = (e) => {
+        console.log("Mirar si lo muestra" + id);
         guardarPasswordNew(e.target.value);
     }
 
     const cambiarContraseña = async (e) => {
         e.preventDefault();
-
+        
         if (password === newpassword) {
             let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/user/${id}`;
 
+            
+            
             let result = await Axios.put(url, {
                 password: newpassword
             });
