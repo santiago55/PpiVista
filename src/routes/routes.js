@@ -5,6 +5,7 @@ import Ingresos from '../pages/Ingresos'
 import Layout from '../pages/Layout';
 import EditarIngresos from '../pages/EditarIngreso'
 import EditarEgresos from '../pages/EditarEgreso'
+import EditarCreditos from '../pages/EditarCreditos'
 import AgregarIngreso from '../pages/AgregarIngreso'
 import AgregarEgreso from '../pages/AgregarEgresos'
 import Cookies from 'universal-cookie';
@@ -199,6 +200,17 @@ function Routes() {
                         return (
                             <EditarIngresos
                                 ingreso={ingreso[0]}
+                                guardarEjecutar={guardarEjecutar}
+                            />
+                        )
+                    }} />
+
+                    <Route exact path="/editar-credito/:id" render={(props) => {
+                        const Idcredito = props.match.params.id;
+                        const credito = creditos.filter(credito => credito._id === Idcredito);
+                        return (
+                            <EditarCreditos
+                                credito={credito[0]}
                                 guardarEjecutar={guardarEjecutar}
                             />
                         )

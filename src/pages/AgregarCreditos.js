@@ -4,7 +4,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { withRouter } from 'react-router-dom'
 import TipoCreditos from '../pages/TipoCreditos';
-function AgregarCreditos({ guardarEjecutar,  history,tipoCredito}) {
+function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
 
     const cookies = new Cookies();
     const [credito, guardarCredito] = useState({
@@ -12,9 +12,9 @@ function AgregarCreditos({ guardarEjecutar,  history,tipoCredito}) {
         valor: '',
         nroCuotas: '',
         tipoCredito: '',
-        fechaRegistro:'',
-        fechaCorte:'',
-        porcentaje:'',
+        fechaRegistro: '',
+        fechaCorte: '',
+        porcentaje: '',
         usuario: cookies.get('id')
     });
 
@@ -23,7 +23,7 @@ function AgregarCreditos({ guardarEjecutar,  history,tipoCredito}) {
             ...credito,
             [e.target.name]: e.target.value
         });
-        
+
     }
     const crearCredito = async (e) => {
         e.preventDefault();
@@ -42,47 +42,47 @@ function AgregarCreditos({ guardarEjecutar,  history,tipoCredito}) {
                 porcentaje: credito.porcentaje,
                 usuario: credito.usuario
             }, { "headers": headers });
-                let i = 0;
+            let i = 0;
             if (resultado.status === 200) {
-                console.log("ID: "+resultado.data.creditosBD._id)
-                do{
+                console.log("ID: " + resultado.data.creditosBD._id)
+                do {
                     let date = credito.fechaCorte.split('T')[0];
-                    let fechaCorte= parseInt(date.split('-')[1]);
-                    fechaCorte += i+1;
-                    let date_total =credito.fechaCorte.split('-')[0]+"-"+fechaCorte.toString()+"-"+credito.fechaCorte.split('-')[2];
-                    try{
+                    let fechaCorte = parseInt(date.split('-')[1]);
+                    fechaCorte += i + 1;
+                    let date_total = credito.fechaCorte.split('-')[0] + "-" + fechaCorte.toString() + "-" + credito.fechaCorte.split('-')[2];
+                    try {
                         let url = `http://localhost:3001/Detalle`;
                         const resultado2 = await axios.post(url, {
-                            nroCuotas: i,
+                            nroCuotas: i + 1,
                             valor: 1,
                             fechaCuota: date_total,
-                            descripcion:'',
-                            estado:'Pendiente',
-                            idCredito:resultado.data.creditosBD._id
+                            descripcion: '',
+                            estado: 'Pendiente',
+                            idCredito: resultado.data.creditosBD._id
 
                         }, { "headers": headers });
                         console.log(resultado2);
-                    }catch(err){
+                    } catch (err) {
                         console.log(err);
                     }
                     i++;
-                }while(i < parseInt(credito.nroCuotas));
+                } while (i < parseInt(credito.nroCuotas));
 
 
 
-                setTimeout(function(){
+                setTimeout(function () {
                     Swal.fire(
                         'Credito Creado',
                         'El credito se ha creado exitosamente',
                         'success'
                     )
-                    
+
                     guardarEjecutar(true);
-                    let date=new Date();
-                    console.log("Ffechas"+date)
+                    let date = new Date();
+                    console.log("Ffechas" + date)
                     history.push('/creditos');
                 }, 1000);
-                
+
             }
         } catch (error) {
             console.log(error);

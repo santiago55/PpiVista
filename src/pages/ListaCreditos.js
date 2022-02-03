@@ -50,7 +50,7 @@ function ListaCreditos(props) {
                     <p>Valor: ${credito.valor}</p>
                     <p>Nro Cuotas: {credito.nroCuotas}</p>
                     <p>Porcentaje interes: {credito.porcentaje}</p>
-                    <Link className="btn btn-danger" id="actualizar" to={`/editar-creditos/${credito._id}`}>Actualizar</Link>
+                    <Link className="btn btn-danger" id="actualizar" to={`/editar-credito/${credito._id}`}>Actualizar</Link>
                     <Link className="btn btn-danger" id="detalle" to={`/detalle-creditos/${credito._id}`}>Ver detalle</Link>
                 
                 </div>
