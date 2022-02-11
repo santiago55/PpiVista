@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ListaDetalleCredito from './ListaDetalleCredito';
+import Cookies from 'universal-cookie';
 
-function DetalleCredito({ creditos }) {
+function DetalleCredito({ creditos,ejecutar2,guardarEjecutar2,guardarEjecutar }) {
+    const cookies = new Cookies();
     const [detalle,guardarDetalle] = useState([]);
     useEffect(() => {
+        if(ejecutar2){
         const consultarDetalleCredito = async () => {
-            let url = `http://localhost:3001/Detalle/${creditos._id}`;
+            let url = `http://localhost:3001/Detalle/${cookies.get('idCred')}`;
             const resultado = await axios.get(url);
             guardarDetalle(resultado.data.detallecreditosBD);
         }
         consultarDetalleCredito();
-    }, [creditos]);
-    console.log()
+        guardarEjecutar2(false);
+        guardarEjecutar(false);
+    }
+    }, [creditos,ejecutar2]);
+
     return (
         <div className="container p-4">
         <div className="row">

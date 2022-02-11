@@ -10,6 +10,10 @@ function ListaCreditos(props) {
     const cookies = new Cookies();
     const { credito, guardarEjecutar } = props;
 
+    const saveIdCred= (e)=>{
+        cookies.set('idCred', credito._id, { path:"/" });
+    }
+
     const eliminarcreditos = id => {
         const headers = {
             'token': cookies.get('token')
@@ -31,7 +35,6 @@ function ListaCreditos(props) {
             guardarEjecutar(true);
         })
     }
-    console.log(credito);
     let fechaOrganizada = credito.fechaRegistro.split('T')[0];
     fechaOrganizada = fechaOrganizada.split('-').reverse().join('-');
     return (        
@@ -51,7 +54,7 @@ function ListaCreditos(props) {
                     <p>Nro Cuotas: {credito.nroCuotas}</p>
                     <p>Porcentaje interes: {credito.porcentaje}</p>
                     <Link className="btn btn-danger" id="actualizar" to={`/editar-creditos/${credito._id}`}>Actualizar</Link>
-                    <Link className="btn btn-danger" id="detalle" to={`/detalle-creditos/${credito._id}`}>Ver detalle</Link>
+                    <Link className="btn btn-danger" onClick={saveIdCred} id="detalle" to={`/detalle-creditos/${credito._id}`}>Ver detalle</Link>
                 
                 </div>
 

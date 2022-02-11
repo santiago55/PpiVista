@@ -61,7 +61,6 @@ function AgregarCreditos({ guardarEjecutar,  history,tipoCredito}) {
                             idCredito:resultado.data.creditosBD._id
 
                         }, { "headers": headers });
-                        console.log(resultado2);
                     }catch(err){
                         console.log(err);
                     }
