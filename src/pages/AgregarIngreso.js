@@ -3,7 +3,8 @@ import Cookies from 'universal-cookie';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { withRouter } from 'react-router-dom'
-function AgregarIngreso({ guardarEjecutar,  history}) {
+import ListaCategoIng from '../pages/ListaCategoIng';
+function AgregarIngreso({ guardarEjecutar, history, categoriaIng }) {
 
     const cookies = new Cookies();
     const [ingreso, guardarIngreso] = useState({
@@ -13,13 +14,12 @@ function AgregarIngreso({ guardarEjecutar,  history}) {
         tipo: '',
         usuario: cookies.get('id')
     });
-
     const guardarDatos = e => {
         guardarIngreso({
             ...ingreso,
             [e.target.name]: e.target.value
         });
-        
+
     }
     const crearIngreso = async (e) => {
         e.preventDefault();
@@ -81,6 +81,23 @@ function AgregarIngreso({ guardarEjecutar,  history}) {
                             placeholder="Valor"
                             onChange={guardarDatos}
                         />
+                    </div>
+                    <label>Categoria</label>
+                    <div className="form-group">
+                        <select
+                            name="categoria"
+                            className="form-control"
+                            onChange={guardarDatos}
+                        >
+                            <option>Seleccione una categoria</option>
+                            {categoriaIng.map(catego => (
+                                <ListaCategoIng
+                                    categori={catego}
+                                />
+                            )
+                            )
+                            }
+                        </select>
                     </div>
                     <label>Fecha</label>
                     <div className="form-group">

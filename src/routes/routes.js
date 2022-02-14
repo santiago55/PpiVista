@@ -35,6 +35,7 @@ function Routes() {
     const [tipoCredi, guardarTipoCred] = useState([]);
     const [email, guardarEmail] = useState('');
     const [olvide, GuardarOlvide] = useState([]);
+    const [categoriaIng, guardarCategoriaIng] = useState([]);
     useEffect(() => {
         if (ejecutar) {
             const consultarIngresos = async () => {
@@ -94,6 +95,19 @@ function Routes() {
                     console.log("Error en la consulta de categoria" + err);
                 }
             }
+            const consultarCatIng = async () => {
+                try {
+                    const headers = {
+                        'token': cookies.get('token')
+                    }
+
+                    let result = await axios.get('http://localhost:3001/categoriaIngreso', { "headers": headers });
+                    guardarCategoriaIng(result.data.categoriaBD);
+                } catch (err) {
+                    console.log("Error en la consulta de categoria" + err);
+                }
+            }
+            consultarCatIng();
             consultarCat();
             consultarEgresos();
             consultarAhorro();
@@ -150,6 +164,7 @@ function Routes() {
                     )} />
                     <Route exact path="/agregar-ingreso" render={() => (
                         <AgregarIngreso
+                            categoriaIng={categoriaIng}
                             guardarEjecutar={guardarEjecutar}
                         />
                     )} />
