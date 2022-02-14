@@ -68,7 +68,6 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito, flag, guardarF
                         console.log("En el if "+date_total);
                     }else{*/
                         n +=1;
-                        console.log("En el else "+date_total);
                         date_total = año + "-" + fechaCorte.toString() + "-" + credito.fechaCorte.split('-')[2];
                     //}
                     
