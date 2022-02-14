@@ -25,7 +25,7 @@ const OnClick = async (e) => {
         },
             { "headers": headers });
         if (result.status === 200) {
-            console.log(result);
+            window.location.reload();
         }
     } catch (err) {
         console.log(err);
