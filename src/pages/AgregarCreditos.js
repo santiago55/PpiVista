@@ -108,6 +108,7 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
                             className="form-control"
                             name="fechaRegistro"
                             onChange={guardarDatos}
+                            required
                         />
                     </div>
                     <label>Descripción</label>
@@ -118,6 +119,7 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
                             name="descripcion"
                             placeholder="Descripción"
                             onChange={guardarDatos}
+                            required
                         />
                     </div>
                     <label>Valor Credito</label>
@@ -128,6 +130,8 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
                             name="valor"
                             placeholder="Valor"
                             onChange={guardarDatos}
+                            required
+                            min={1}
                         />
                     </div>
                     <label>Número Cuotas</label>
@@ -138,6 +142,7 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
                             name="nroCuotas"
                             placeholder="nroCuotas"
                             onChange={guardarDatos}
+                            required
                         />
                     </div>
                     <label>Fecha Corte</label>
@@ -147,6 +152,7 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
                             className="form-control"
                             name="fechaCorte"
                             onChange={guardarDatos}
+                            required
                         />
                     </div>
                     <label>Tipo de credito:</label>
@@ -155,6 +161,7 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
                             name="tipoCredito"
                             className="form-control"
                             onChange={guardarDatos}
+                            required
                         >
                             <option>Seleccione una categoria</option>
                             {tipoCredito.map(tipo => (

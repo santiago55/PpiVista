@@ -130,7 +130,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                                 name="tipo"
                                 value="Fijo"
                                 onChange={guardarDatos}
-                                required
+                                
                             />
                             <label className="form-check-label">
                                 Fijo
@@ -143,7 +143,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                                 name="tipo"
                                 value="Extraordinario"
                                 onChange={guardarDatos}
-                                required
+                                
                             />
                             <label className="form-check-label">
                                 Extraordinario

@@ -80,6 +80,8 @@ function AgregarIngreso({ guardarEjecutar,  history}) {
                             name="valor"
                             placeholder="Valor"
                             onChange={guardarDatos}
+                            required
+                            min={1}
                         />
                     </div>
                     <label>Fecha</label>
@@ -89,6 +91,7 @@ function AgregarIngreso({ guardarEjecutar,  history}) {
                             className="form-control"
                             name="date"
                             onChange={guardarDatos}
+                            required
                         />
                     </div>
                     <legend className="text-center">Tipo de ingreso:</legend>
