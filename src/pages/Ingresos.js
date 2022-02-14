@@ -27,16 +27,6 @@ function Ingresos({ ingresos, guardarEjecutar }) {
     return (
         <Fragment>
             <div className="container p-4">
-
-                <div className="row">
-                    <label>Filtrar por mes:</label>
-                    <input
-                        type="date"
-                        onChange={filtroFecha}
-                    />
-                </div>
-            </div>
-            <div className="container p-4">
                 <div className="row">
                     {ingresos.map(ingreso => (
                         <ListaIngresos

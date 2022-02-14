@@ -5,7 +5,6 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 function OlvideContraseña({ guardarEmail, email, GuardarOlvide, olvide }) {
     
-    
     const guardarEmails = e => {
         guardarEmail(e.target.value);
     }
@@ -13,12 +12,14 @@ function OlvideContraseña({ guardarEmail, email, GuardarOlvide, olvide }) {
     const enviarCorreoRecuperar = async (e) => {
         e.preventDefault();
         try {
-            let result = await axios.post('https://ppibackend-53pyqym6t-santiago55.vercel.app/recuperarcontra', {
+            let result = await axios.post('https://ppibackend-rm6m2tlgn-santiago55.vercel.app/recuperarcontra'/*'https://ppibackend-53pyqym6t-santiago55.vercel.app/recuperarcontra'*/, {
                 email: email
             });
             if (result.status === 200) {
                 console.log(result.data.usuarioUpdate._id);
                 cookies.set('idol', result.data.usuarioUpdate._id, { path:"/" });
+                let id = cookies.get('idol');
+                console.log(id);
                 alert("El link de recuperación se enviara al correo ingresado");
             }
         } catch (e) {

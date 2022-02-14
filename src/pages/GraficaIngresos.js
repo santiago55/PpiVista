@@ -20,6 +20,8 @@ const GraficaIngresos = ({ ingresos, tipo }) => {
     total.push(contF, contE);
     let totaltotal = contF + contE;
 
+    let busca = ingresos.filter(n => n.date > "23-07-2021" && n.date < "25-07-2021")
+    console.log(busca)
     return (
 
 

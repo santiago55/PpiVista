@@ -32,7 +32,7 @@ function AgregarAhorro({ guardarEjecutar, history, categoria }) {
         }
         try {
 
-            const result = await axios.post('https://ppibackend-53pyqym6t-santiago55.vercel.app/ahorros', {
+            const result = await axios.post('https://ppibackend-rm6m2tlgn-santiago55.vercel.app/ahorros', {
                 descripcion: ahorro.descripcion,
                 valor: ahorro.valor,
                 date: ahorro.date,

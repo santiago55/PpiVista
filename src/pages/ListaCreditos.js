@@ -5,18 +5,22 @@ import '../css/ingresos.css'
 import axios from 'axios'
 import Cookies from 'universal-cookie';
 
-function ListaEgresos(props) {
+function ListaCreditos(props) {
 
     const cookies = new Cookies();
-    const { egreso, guardarEjecutar } = props;
+    const { credito, guardarEjecutar } = props;
 
-    const eliminarEgreso = id => {
+    const saveIdCred= (e)=>{
+        cookies.set('idCred', credito._id, { path:"/" });
+    }
+
+    const eliminarcreditos = id => {
         const headers = {
             'token': cookies.get('token')
         }
         Swal.fire({
             title: 'Estas Seguro?',
-            text: "Si eliminas un egreso no podrás revertirlo!",
+            text: "Si eliminas un creditos no podrás revertirlo!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -25,34 +29,37 @@ function ListaEgresos(props) {
             cancelButtonText: 'Cancelar'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/egresos/${egreso._id}`;
+                let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/creditos/${credito._id}`;
                 await axios.delete(url, { "headers": headers });
             }
             guardarEjecutar(true);
         })
     }
-    let fechaOrganizada = egreso.date.split('T')[0];
+    let fechaOrganizada = credito.fechaRegistro.split('T')[0];
     fechaOrganizada = fechaOrganizada.split('-').reverse().join('-');
     return (        
         <div className="col-md-4 p-2">
             <div id="carta" className="card">
                 <div className="card-header d-flex justify-content-between">
-                    <h5>{egreso.descripcion}</h5>
-                    <Link className="btn btn-danger" id="actualizar" to={`/editar-egreso/${egreso._id}`}>Actualizar</Link>
-                </div>
-                <div className="card-body">
-                    <p>Valor: ${egreso.valor}</p>
-                    <p>Tipo de egreso: {egreso.tipo}</p>
-                    <p>Categoria: {egreso.categoria}</p>
-                    <p>Fecha: {fechaOrganizada}</p>
+                    <h5>{credito.descripcion}</h5>
                     <button type="button" id="eliminar"
                         className="btn btn-danger"
-                        onClick={() => { eliminarEgreso(egreso._id) }}
+                        onClick={() => { eliminarcreditos(credito._id) }}
                     >Eliminar &times;</button>
+                    </div>
+                <div className="card-body">
+                    <p>Fecha: {fechaOrganizada}</p>
+                    <p>Tipo de creditos: {credito.tipoCredito}</p>
+                    <p>Valor: ${credito.valor}</p>
+                    <p>Nro Cuotas: {credito.nroCuotas}</p>
+                    <p>Porcentaje interes: {credito.porcentaje}</p>
+                    <Link className="btn btn-danger" id="actualizar" to={`/editar-creditos/${credito._id}`}>Actualizar</Link>
+                    <Link className="btn btn-danger" onClick={saveIdCred} id="detalle" to={`/detalle-creditos/${credito._id}`}>Ver detalle</Link>
+                
                 </div>
 
             </div>
         </div>
     );
 }
-export default ListaEgresos;
+export default ListaCreditos;

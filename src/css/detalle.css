@@ -1,0 +1,11 @@
+.pagar{
+    background-color: #4CAF50;
+    border: none;
+    color: black;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 17px;
+}

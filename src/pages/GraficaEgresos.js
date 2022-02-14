@@ -10,15 +10,24 @@ const GraficaEgresos = ({ egresos, tipo , categoria}) => {
     let categorias = categoria.map(categoria => categoria.categoria)
     let total = [];
 
-    const contF = egresos.filter(egresos => egresos.tipo === 'Fijo')
+    const contD = egresos.filter(egresos => egresos.categoria === 'Deudas')
         .reduce((total, egresos) => total += egresos.valor, 0)
      
 
-    const contE = egresos.filter(egresos => egresos.tipo === 'Extraordinario')
+    const contT = egresos.filter(egresos => egresos.categoria === 'Transporte')
         .reduce((total, egresos) => total += egresos.valor, 0)
 
-    total.push(contF, contE);
-    let totaltotal = contF + contE;
+    const contC = egresos.filter(egresos => egresos.categoria === 'Alimento')
+        .reduce((total, egresos) => total += egresos.valor, 0)
+
+    const contO = egresos.filter(egresos => egresos.categoria === 'Otros')
+        .reduce((total, egresos) => total += egresos.valor, 0)
+
+    total.push(contD, contT,contC,contO);
+    let totaltotal = contD+ contT+contC+contO;
+
+    let busca = egresos.filter(n => n.date > "2021-07-25" && n.date < "2021-07-25")
+    console.log(busca)
 
 
     return (
@@ -33,6 +42,8 @@ const GraficaEgresos = ({ egresos, tipo , categoria}) => {
                             data: total,
                             backgroundColor: [
                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
                                 'rgba(54, 162, 235, 0.2)'
                             ],
                             borderColor: [

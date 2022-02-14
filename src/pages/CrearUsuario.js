@@ -28,7 +28,7 @@ function CrearUsuario({ history }) {
     const crearUsuario = async (e) => {
         e.preventDefault();
         try {
-            let result = await axios.post('https://ppibackend-53pyqym6t-santiago55.vercel.app/user', {
+            let result = await axios.post('https://ppibackend-rm6m2tlgn-santiago55.vercel.app/user', {
                 nombre: usuario.nombre,
                 apellidos: usuario.apellidos,
                 email: usuario.email,
@@ -68,6 +68,7 @@ function CrearUsuario({ history }) {
                         name="nombre"
                         placeholder="Nombre"
                         onChange={guardarDatos}
+                        required
                     />
                     <input
                         type="text"
@@ -75,6 +76,7 @@ function CrearUsuario({ history }) {
                         name="apellidos"
                         placeholder="Apellidos"
                         onChange={guardarDatos}
+                        required
                     />
                     <input
                         type="email"
@@ -82,6 +84,7 @@ function CrearUsuario({ history }) {
                         name="email"
                         placeholder="Email"
                         onChange={guardarDatos}
+                        required
                     />
                     <input
                         type="text"
@@ -89,6 +92,7 @@ function CrearUsuario({ history }) {
                         name="userName"
                         placeholder="Usuario"
                         onChange={guardarDatos}
+                        required
                     />
                     <input
                         type="password"
@@ -96,6 +100,7 @@ function CrearUsuario({ history }) {
                         name="password"
                         placeholder="Contraseña"
                         onChange={guardarDatos}
+                        required
                     />
                     <input
                         type="submit"
