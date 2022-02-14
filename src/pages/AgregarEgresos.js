@@ -33,7 +33,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
         }
         try {
 
-            const result = await axios.post('https://ppibackend-53pyqym6t-santiago55.vercel.app/egresos', {
+            const result = await axios.post('http://localhost:3001/egresos', {
                 descripcion: egreso.descripcion,
                 valor: egreso.valor,
                 date: egreso.date,
@@ -77,6 +77,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                             name="descripcion"
                             placeholder="Descripción"
                             onChange={guardarDatos}
+                            
                         />
                     </div>
                     <label>Valor</label>
@@ -87,6 +88,8 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                             name="valor"
                             placeholder="Valor"
                             onChange={guardarDatos}
+                            required
+                            min={1}
                         />
                     </div>
                     <label>Categoria</label>
@@ -95,6 +98,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                             name="categoria"
                             className="form-control"
                             onChange={guardarDatos}
+                            required
                         >
                             <option>Seleccione una categoria</option>
                             {categoria.map(catego => (
@@ -104,6 +108,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                             )
                             )
                             }
+                            
                         </select>
                     </div>
                     <label>Fecha</label>
@@ -125,6 +130,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                                 name="tipo"
                                 value="Fijo"
                                 onChange={guardarDatos}
+                                
                             />
                             <label className="form-check-label">
                                 Fijo
@@ -137,6 +143,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                                 name="tipo"
                                 value="Extraordinario"
                                 onChange={guardarDatos}
+                                
                             />
                             <label className="form-check-label">
                                 Extraordinario

@@ -18,6 +18,8 @@ function OlvideContraseña({ guardarEmail, email, GuardarOlvide, olvide }) {
             if (result.status === 200) {
                 console.log(result.data.usuarioUpdate._id);
                 cookies.set('idol', result.data.usuarioUpdate._id, { path:"/" });
+                let id = cookies.get('idol');
+                console.log(id);
                 alert("El link de recuperación se enviara al correo ingresado");
             }
         } catch (e) {
