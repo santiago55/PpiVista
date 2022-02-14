@@ -29,7 +29,7 @@ function ListaCreditos(props) {
             cancelButtonText: 'Cancelar'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                let url = `http://localhost:3001/creditos/${credito._id}`;
+                let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/creditos/${credito._id}`;
                 await axios.delete(url, { "headers": headers });
             }
             guardarEjecutar(true);

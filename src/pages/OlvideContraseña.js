@@ -12,7 +12,7 @@ function OlvideContraseña({ guardarEmail, email, GuardarOlvide, olvide }) {
     const enviarCorreoRecuperar = async (e) => {
         e.preventDefault();
         try {
-            let result = await axios.post('http://localhost:3001/recuperarcontra'/*'https://ppibackend-53pyqym6t-santiago55.vercel.app/recuperarcontra'*/, {
+            let result = await axios.post('https://ppibackend-rm6m2tlgn-santiago55.vercel.app/recuperarcontra'/*'https://ppibackend-53pyqym6t-santiago55.vercel.app/recuperarcontra'*/, {
                 email: email
             });
             if (result.status === 200) {

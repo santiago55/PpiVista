@@ -20,7 +20,7 @@ const OnClick = async (e) => {
     }
     console.log(detalle1._id);
     try {
-        let result = await axios.put(`http://localhost:3001/Detalle/${detalle1._id}`, {
+        let result = await axios.put(`https://ppibackend-rm6m2tlgn-santiago55.vercel.app/Detalle/${detalle1._id}`, {
             estado: "Pagado"
         },
             { "headers": headers });
@@ -38,6 +38,7 @@ return (
         <td></td>
         <td>{detalle1.nroCuotas}</td>
         <td>{detalle1.fechaCuota}</td>
+        <td>{detalle1.valor}</td>
         <td style={detalle1.estado === "Pagado" ? style : null}>{detalle1.estado}</td>
         <td><button className="pagar" onClick={OnClick} style={detalle1.estado === "Pagado" ? styleDesaparecer : null}>Pagar</button></td>
     </tr>

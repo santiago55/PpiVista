@@ -15,7 +15,7 @@ function Login({history}) {
   const iniciarSesion = async (e) => {
 
     e.preventDefault();
-    await axios.post('https://ppibackend-53pyqym6t-santiago55.vercel.app/login', {
+    await axios.post('https://ppibackend-rm6m2tlgn-santiago55.vercel.app/login', {
       userName,
       password
     })

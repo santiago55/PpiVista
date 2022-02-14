@@ -12,6 +12,7 @@ function AgregarIngreso({ guardarEjecutar, history, categoriaIng }) {
         valor: '',
         date: '',
         tipo: '',
+        categoria: '',
         usuario: cookies.get('id')
     });
     const guardarDatos = e => {
@@ -26,13 +27,15 @@ function AgregarIngreso({ guardarEjecutar, history, categoriaIng }) {
         const headers = {
             'token': cookies.get('token')
         }
-        let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/ingresos`;
+        let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/ingresos`;
+        //let url =`http://localhost:3001/ingresos`;
         try {
             const resultado = await axios.post(url, {
                 descripcion: ingreso.descripcion,
                 valor: ingreso.valor,
                 date: ingreso.date,
                 tipo: ingreso.tipo,
+                categoria: ingreso.categoria,
                 usuario: ingreso.usuario
             }, { "headers": headers });
 
@@ -90,6 +93,7 @@ function AgregarIngreso({ guardarEjecutar, history, categoriaIng }) {
                             name="categoria"
                             className="form-control"
                             onChange={guardarDatos}
+                            required
                         >
                             <option>Seleccione una categoria</option>
                             {categoriaIng.map(catego => (

@@ -9,7 +9,7 @@ function DetalleCredito({ creditos,ejecutar2,guardarEjecutar2,guardarEjecutar })
     useEffect(() => {
         if(ejecutar2){
         const consultarDetalleCredito = async () => {
-            let url = `http://localhost:3001/Detalle/${cookies.get('idCred')}`;
+            let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/Detalle/${cookies.get('idCred')}`;
             const resultado = await axios.get(url);
             guardarDetalle(resultado.data.detallecreditosBD);
         }
@@ -30,6 +30,7 @@ function DetalleCredito({ creditos,ejecutar2,guardarEjecutar2,guardarEjecutar })
                                 <th checkboxSelection></th>
                                 <th>Numero de Cuota</th>
                                 <th>Fecha Corte</th>
+                                <th>Valor Cuota</th>
                                 <th>Estado</th>
                             </tr>
                         </thead>

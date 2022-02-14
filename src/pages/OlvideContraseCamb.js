@@ -24,7 +24,7 @@ function OlvideContraseñaCamb({ history }) {
         e.preventDefault();
         
         if (password === newpassword) {
-            let url = `https://ppibackend-53pyqym6t-santiago55.vercel.app/user/${id}`;
+            let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/user/${id}`;
             
             let result = await Axios.put(url, {
                 password: newpassword
