@@ -77,7 +77,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                             name="descripcion"
                             placeholder="Descripción"
                             onChange={guardarDatos}
-                            required
+                            
                         />
                     </div>
                     <label>Valor</label>
@@ -98,6 +98,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                             name="categoria"
                             className="form-control"
                             onChange={guardarDatos}
+                            required
                         >
                             <option>Seleccione una categoria</option>
                             {categoria.map(catego => (
@@ -107,6 +108,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                             )
                             )
                             }
+                            
                         </select>
                     </div>
                     <label>Fecha</label>
@@ -128,6 +130,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                                 name="tipo"
                                 value="Fijo"
                                 onChange={guardarDatos}
+                                required
                             />
                             <label className="form-check-label">
                                 Fijo
@@ -140,6 +143,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                                 name="tipo"
                                 value="Extraordinario"
                                 onChange={guardarDatos}
+                                required
                             />
                             <label className="form-check-label">
                                 Extraordinario
