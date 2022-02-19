@@ -15,7 +15,6 @@ function Ahorros({ ahorros, guardarEjecutar }) {
                                     <th checkboxSelection></th>
                                     <th>Descripción</th>
                                     <th>Cantidad</th>
-                                    <th>Tipo</th>
                                     <th>fecha</th>
                                     <th>Acciones</th>
                                 </tr>

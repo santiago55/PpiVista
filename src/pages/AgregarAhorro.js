@@ -12,7 +12,6 @@ function AgregarAhorro({ guardarEjecutar, history, categoria }) {
         descripcion: '',
         date: '',
         valor: '',
-        categoria: '',
         usuario: cookies.get('id')
     });
 
@@ -36,7 +35,6 @@ function AgregarAhorro({ guardarEjecutar, history, categoria }) {
                 descripcion: ahorro.descripcion,
                 valor: ahorro.valor,
                 date: ahorro.date,
-                categoria: ahorro.categoria,
                 usuario: ahorro.usuario
             }, { "headers": headers });
             if (result.status === 200) {
@@ -96,23 +94,7 @@ function AgregarAhorro({ guardarEjecutar, history, categoria }) {
                             name="date"
                             onChange={guardarDatos}
                         />
-                    </div>
-                    <label>Categoria</label>
-                    <div className="form-group">
-                        <select
-                            name="categoria"
-                            className="form-control"
-                            onChange={guardarDatos}
-                        >
-                            <option>Seleccione una categoria</option>
-                            {categoria.map(catego => (
-                                <ListaCategoria
-                                    categori={catego}
-                                />))
-                            }
-                        </select>
-                    </div>
-                    
+                    </div>        
                     <input type="submit"
                         className="font-weight-bold text-uppercase mt-5 btn btn-primary btn-block py-3"
                         value="Agregar Ahorro"
