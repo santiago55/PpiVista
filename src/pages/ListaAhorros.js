@@ -38,7 +38,6 @@ function ListaAhorros({ ahorro1, guardarEjecutar }) {
                 <td></td>
                 <td>{ahorro1.descripcion}</td>
                 <td>{ahorro1.valor}</td>
-                <td>{ahorro1.categoria}</td>
                 <td>{fechaOrganizada}</td>
                 <td><button type="button" id="eliminar"
                 className="btn btn-danger"
