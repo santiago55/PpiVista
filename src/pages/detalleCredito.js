@@ -9,7 +9,7 @@ function DetalleCredito({ creditos,ejecutar2,guardarEjecutar2,guardarEjecutar })
     useEffect(() => {
         if(ejecutar2){
         const consultarDetalleCredito = async () => {
-            let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/Detalle/${cookies.get('idCred')}`;
+            let url = `https://ppibackend.vercel.app/Detalle/${cookies.get('idCred')}`;
             const resultado = await axios.get(url);
             guardarDetalle(resultado.data.detallecreditosBD);
         }

@@ -27,7 +27,7 @@ function AgregarIngreso({ guardarEjecutar, history, categoriaIng }) {
         const headers = {
             'token': cookies.get('token')
         }
-        let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/ingresos`;
+        let url = `https://ppibackend.vercel.app/ingresos`;
         //let url =`http://localhost:3001/ingresos`;
         try {
             const resultado = await axios.post(url, {

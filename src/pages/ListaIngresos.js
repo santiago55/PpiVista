@@ -26,7 +26,7 @@ function ListaIngresos(props) {
             cancelButtonText: 'Cancelar'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/ingresos/${ingreso._id}`;
+                let url = `https://ppibackend.vercel.app/ingresos/${ingreso._id}`;
                 await axios.delete(url, { "headers": headers });
             }
             guardarEjecutar(true);

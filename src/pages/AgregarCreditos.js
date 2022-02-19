@@ -4,7 +4,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { withRouter } from 'react-router-dom'
 import TipoCreditos from '../pages/TipoCreditos';
-function AgregarCreditos({ guardarEjecutar, history, tipoCredito, flag, guardarFlag }) {
+function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
 
     const cookies = new Cookies();
     const [credito, guardarCredito] = useState({
@@ -30,7 +30,7 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito, flag, guardarF
         const headers = {
             'token': cookies.get('token')
         }
-        let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/creditos`;
+        let url = `https://ppibackend.vercel.app/creditos`;
         try {
             const resultado = await axios.post(url, {
                 descripcion: credito.descripcion,
@@ -45,40 +45,25 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito, flag, guardarF
             let i = 0;
             let n = 0;
             if (resultado.status === 200) {
+                let date = credito.fechaCorte.split('T')[0];
+                let fechaCorte = parseInt(date.split('-')[1]);
+                let año = parseInt(date.split('-')[0]);
+                i = fechaCorte;
                 do {
-                    let date = credito.fechaCorte.split('T')[0];
-                    let fechaCorte = parseInt(date.split('-')[1]);
-                    let año =parseInt(date.split('-')[0]);
-                    fechaCorte += i + 1;
-
-                    let date_total='';
-                    if(fechaCorte>12){
-                        fechaCorte = fechaCorte-12;
-                        año+=1;
-                        guardarFlag(true);
-                    }/*else{
-                        guardarFlag(false); 
-                    }*/
-                        /*if(flag){
-                        n +=1;
-                        i=0;
-                        fechaCorte += i;
-                        //let año =parseInt(date.split('-')[0])+1;
-                        date_total = año + "-" + fechaCorte.toString() + "-" + credito.fechaCorte.split('-')[2];
-                        console.log("En el if "+date_total);
-                    }else{*/
-                        n +=1;
-                        date_total = año + "-" + fechaCorte.toString() + "-" + credito.fechaCorte.split('-')[2];
-                    //}
-                    
-                    let valorCuota = credito.valor/credito.nroCuotas;
-                    let aux= (credito.porcentaje/100)*valorCuota;
-                    //let excedente =  valorCuota*aux;
-                    valorCuota +=aux;
+                    let date_total = '';
+                    if (i > 12) {
+                        i = 1;
+                        año += 1;
+                    }
+                    n += 1;
+                    date_total = año + "-" + i.toString() + "-" + credito.fechaCorte.split('-')[2];
+                    let valorCuota = credito.valor / credito.nroCuotas;
+                    let aux = (credito.porcentaje / 100) * valorCuota;
+                    valorCuota += aux;
                     try {
-                        let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/Detalle`;
+                        let url = `https://ppibackend.vercel.app/Detalle`;
                         const resultado2 = await axios.post(url, {
-                            nroCuotas: i + 1,
+                            nroCuotas: n,
                             valor: valorCuota,
                             fechaCuota: date_total,
                             descripcion: '',

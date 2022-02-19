@@ -3,7 +3,7 @@ import React from 'react'
 function Confirmar() {
     return (
         <div class="container">
-            <p class="alert_success">&#x2611; Cuenta confirmada correctamente</p>
+            <a href="https://ppi-vista.vercel.app/" class="alert_success" >&#x2611; Cuenta confirmada correctamente</a>
         </div>
     );
 }

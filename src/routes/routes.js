@@ -41,26 +41,26 @@ function Routes() {
     useEffect(() => {
         if (ejecutar) {
             const consultarIngresos = async () => {
-                let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/ingresos/${cookies.get('id')}`;
+                let url = `https://ppibackend.vercel.app/ingresos/${cookies.get('id')}`;
                 const resultado = await axios.get(url);
                 guardarIngresos(resultado.data.ingresoBD);
             }
 
             const consultarEgresos = async () => {
-                let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/egresos/${cookies.get('id')}`;
+                let url = `https://ppibackend.vercel.app/egresos/${cookies.get('id')}`;
                 const resultado = await axios.get(url);
                 guardarEgresos(resultado.data.egresosBD);
             }
 
             const consultarAhorro = async () => {
-                let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/ahorros/${cookies.get('id')}`;
+                let url = `https://ppibackend.vercel.app/ahorros/${cookies.get('id')}`;
                 const resultado = await axios.get(url);
                 guardarAhorro(resultado.data.ahorroBD);
 
             }
 
             const consultarCredito = async () => {
-                let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/creditos/${cookies.get('id')}`;
+                let url = `https://ppibackend.vercel.app/creditos/${cookies.get('id')}`;
                 const resultado = await axios.get(url);
                 guardarCreditos(resultado.data.creditosBD);
             }
@@ -70,13 +70,13 @@ function Routes() {
                 guardarCreditos(resultado.data.creditosBD);
             }*/
             const consultarTiposIngreso = async () => {
-                let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/tipo`;
+                let url = `https://ppibackend.vercel.app/tipo`;
                 const resultado = await axios.get(url);
                 guardarTipos(resultado.data.tipoBD);
             }
 
             const consultarTiposCreditos = async () => {
-                let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/tipocredito/`;
+                let url = `https://ppibackend.vercel.app/tipocredito`;
                 const resultado = await axios.get(url);
                 guardarTipoCred(resultado.data.tipoBD);
             }
@@ -91,7 +91,7 @@ function Routes() {
                         'token': cookies.get('token')
                     }
 
-                    let result = await axios.get('https://ppibackend-rm6m2tlgn-santiago55.vercel.app/categoria', { "headers": headers });
+                    let result = await axios.get('https://ppibackend.vercel.app/categoria', { "headers": headers });
                     guardarCat(result.data.categoriaBD);
                 } catch (err) {
                     console.log("Error en la consulta de categoria" + err);
@@ -103,7 +103,7 @@ function Routes() {
                         'token': cookies.get('token')
                     }
 
-                    let result = await axios.get('https://ppibackend-rm6m2tlgn-santiago55.vercel.app/categoriaIngreso', { "headers": headers });
+                    let result = await axios.get('https://ppibackend.vercel.app/categoriaIngreso', { "headers": headers });
                     guardarCategoriaIng(result.data.categoriaBD);
                 } catch (err) {
                     console.log("Error en la consulta de categoria" + err);
