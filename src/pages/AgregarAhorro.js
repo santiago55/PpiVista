@@ -44,7 +44,7 @@ function AgregarAhorro({ guardarEjecutar, history, categoria }) {
                     'success'
                 )
                 guardarEjecutar(true);
-                history.push('/Ahorros');
+                history.push('/ahorros');
             }
         } catch (err) {
             console.log(err);
