@@ -44,7 +44,7 @@ function AgregarAhorro({ guardarEjecutar, history, categoria }) {
                     'success'
                 )
                 guardarEjecutar(true);
-                history.push('/ahorros');
+                history.push('/ahorro');
             }
         } catch (err) {
             console.log(err);
@@ -82,6 +82,7 @@ function AgregarAhorro({ guardarEjecutar, history, categoria }) {
                             className="form-control"
                             name="valor"
                             placeholder="Valor"
+                            min={1}
                             onChange={guardarDatos}
                         />
                     </div>
