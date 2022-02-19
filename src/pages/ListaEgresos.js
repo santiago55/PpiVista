@@ -25,7 +25,7 @@ function ListaEgresos(props) {
             cancelButtonText: 'Cancelar'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/egresos/${egreso._id}`;
+                let url = `https://ppibackend.vercel.app/egresos/${egreso._id}`;
                 await axios.delete(url, { "headers": headers });
             }
             guardarEjecutar(true);

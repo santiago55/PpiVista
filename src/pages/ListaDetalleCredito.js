@@ -20,7 +20,7 @@ const OnClick = async (e) => {
     }
     console.log(detalle1._id);
     try {
-        let result = await axios.put(`https://ppibackend-rm6m2tlgn-santiago55.vercel.app/Detalle/${detalle1._id}`, {
+        let result = await axios.put(`https://ppibackend.vercel.app/Detalle/${detalle1._id}`, {
             estado: "Pagado"
         },
             { "headers": headers });

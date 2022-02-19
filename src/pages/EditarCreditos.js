@@ -24,7 +24,7 @@ function EditarCreditos(props) {
             return;
         }
 
-        let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/creditos/${credito._id}`;
+        let url = `https://ppibackend.vercel.app/creditos/${credito._id}`;
 
         try {
             let resultado = await axios.put(url, {

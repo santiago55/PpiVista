@@ -20,7 +20,7 @@ function CambiarContra({ history }) {
     const cambiarContraseña = async (e) => {
         e.preventDefault();
         let id = cookies.get('id');
-        let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/user/${id}`;
+        let url = `https://ppibackend.vercel.app/user/${id}`;
         try {
             if (datos.password === datos.newpassword) {
                 const result = await axios.put(url, { password: datos.password });

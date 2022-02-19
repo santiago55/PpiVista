@@ -33,7 +33,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
         }
         try {
 
-            const result = await axios.post('https://ppibackend-rm6m2tlgn-santiago55.vercel.app/egresos', {
+            const result = await axios.post('https://ppibackend.vercel.app/egresos', {
                 descripcion: egreso.descripcion,
                 valor: egreso.valor,
                 date: egreso.date,

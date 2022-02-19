@@ -21,7 +21,7 @@ function EditarIngreso(props) {
             return;
         }
 
-        let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/ingresos/${ingreso._id}`;
+        let url = `https://ppibackend.vercel.app/ingresos/${ingreso._id}`;
 
         try {
             let resultado = await axios.put(url, {

@@ -3,6 +3,7 @@ import Cookies from 'universal-cookie';
 import { NavLink, withRouter } from 'react-router-dom'
 import { NavDropdown } from 'react-bootstrap'
 import '../css/navegacion.css'
+import logo from '../images/LOGO.PNG'
 
 
 function Menu({ history }) {
@@ -17,6 +18,12 @@ function Menu({ history }) {
         cookies.remove('token', { path: "/" });
 
     }
+
+    const style ={
+        "width": "100px",
+        "border-radius": "10px"
+    };
+
     useEffect(() => {
         if (!cookies.get('username')) {
             history.replace("./");
@@ -24,8 +31,11 @@ function Menu({ history }) {
     }, [cookies]);
     return (
         <nav className="navbar navbar-expand-lg navbar-dark" id="navegacion">
+            <img src={logo} alt ="" style={style} />
             <div className="container">
+            
                 <NavLink to="/Menu" className="navbar-brand">
+                    
                     <strong>Finance Control</strong>
                 </NavLink>
                 <ul className="navbar-nav mr-auto">
@@ -67,7 +77,7 @@ function Menu({ history }) {
 
                             <li><NavDropdown.Item href="/creditos" className="dropdown-item"><strong>Lista creditos</strong></NavDropdown.Item></li>
                             <li><NavDropdown.Item href="/agregar-creditos" className="dropdown-item"><strong>Agregar Creditos</strong></NavDropdown.Item></li>
-                            <li><NavDropdown.Item href="/movimiento-creditos" className="dropdown-item"><strong>Movimientos creditos</strong></NavDropdown.Item></li>
+                            {/*<li><NavDropdown.Item href="/movimiento-creditos" className="dropdown-item"><strong>Movimientos creditos</strong></NavDropdown.Item></li>*/}
                         </NavDropdown>
                     </li>
 

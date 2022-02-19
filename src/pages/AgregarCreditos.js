@@ -30,7 +30,7 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
         const headers = {
             'token': cookies.get('token')
         }
-        let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/creditos`;
+        let url = `https://ppibackend.vercel.app/creditos`;
         try {
             const resultado = await axios.post(url, {
                 descripcion: credito.descripcion,
@@ -61,7 +61,7 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
                     let aux = (credito.porcentaje / 100) * valorCuota;
                     valorCuota += aux;
                     try {
-                        let url = `https://ppibackend-rm6m2tlgn-santiago55.vercel.app/Detalle`;
+                        let url = `https://ppibackend.vercel.app/Detalle`;
                         const resultado2 = await axios.post(url, {
                             nroCuotas: n,
                             valor: valorCuota,
