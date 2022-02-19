@@ -111,7 +111,7 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
                     onSubmit={crearCredito}
                     className="mt-5"
                 >
-                    <label>Fecha Registro</label>
+                    <label>Fecha Registro *</label>
                     <div className="form-group">
                         <input
                             type="date"
@@ -121,7 +121,7 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
                             required
                         />
                     </div>
-                    <label>Descripción</label>
+                    <label>Descripción *</label>
                     <div className="form-group">
                         <input
                             type="text"
@@ -132,7 +132,7 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
                             required
                         />
                     </div>
-                    <label>Valor Credito</label>
+                    <label>Valor Credito *</label>
                     <div className="form-group">
                         <input
                             type="number"
@@ -144,7 +144,7 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
                             min={1}
                         />
                     </div>
-                    <label>Número Cuotas</label>
+                    <label>Número Cuotas *</label>
                     <div className="form-group">
                         <input
                             type="number"
@@ -155,7 +155,7 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
                             required
                         />
                     </div>
-                    <label>Fecha Corte</label>
+                    <label>Fecha Corte *</label>
                     <div className="form-group">
                         <input
                             type="date"
@@ -165,7 +165,7 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
                             required
                         />
                     </div>
-                    <label>Tipo de credito:</label>
+                    <label>Tipo de credito: *</label>
                     <div className="form-group">
                         <select
                             name="tipoCredito"
@@ -183,13 +183,14 @@ function AgregarCreditos({ guardarEjecutar, history, tipoCredito }) {
                             }
                         </select>
                     </div>
-                    <label>Porcentaje Interes Mensual</label>
+                    <label>Porcentaje Interes Mensual (Opcional)</label>
                     <div className="form-group">
                         <input
                             type="number"
                             className="form-control"
                             name="porcentaje"
                             step="0.1"
+                            defaultValue={0}
                             onChange={guardarDatos}
                         />
                     </div>

@@ -65,7 +65,7 @@ function AgregarIngreso({ guardarEjecutar, history, categoriaIng }) {
                     onSubmit={crearIngreso}
                     className="mt-5"
                 >
-                    <label>Descripción</label>
+                    <label>Descripción (Opcional)</label>
                     <div className="form-group">
                         <input
                             type="text"
@@ -75,7 +75,7 @@ function AgregarIngreso({ guardarEjecutar, history, categoriaIng }) {
                             onChange={guardarDatos}
                         />
                     </div>
-                    <label>Valor</label>
+                    <label>Valor *</label>
                     <div className="form-group">
                         <input
                             type="number"
@@ -87,7 +87,7 @@ function AgregarIngreso({ guardarEjecutar, history, categoriaIng }) {
                             min={1}
                         />
                     </div>
-                    <label>Categoria</label>
+                    <label>Categoria *</label>
                     <div className="form-group">
                         <select
                             name="categoria"
@@ -105,7 +105,7 @@ function AgregarIngreso({ guardarEjecutar, history, categoriaIng }) {
                             }
                         </select>
                     </div>
-                    <label>Fecha</label>
+                    <label>Fecha *</label>
                     <div className="form-group">
                         <input
                             type="date"
@@ -115,7 +115,7 @@ function AgregarIngreso({ guardarEjecutar, history, categoriaIng }) {
                             required
                         />
                     </div>
-                    <legend className="text-center">Tipo de ingreso:</legend>
+                    <legend className="text-center">Tipo de ingreso: *</legend>
                     <div className="text-center">
                         <div className="form-check form-check-inline">
                             <input

@@ -69,7 +69,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                     onSubmit={crearEgreso}
                     className="mt-5"
                 >
-                    <label>Descripción</label>
+                    <label>Descripción (Opcional)</label>
                     <div className="form-group">
                         <input
                             type="text"
@@ -80,7 +80,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                             
                         />
                     </div>
-                    <label>Valor</label>
+                    <label>Valor *</label>
                     <div className="form-group">
                         <input
                             type="number"
@@ -92,7 +92,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                             min={1}
                         />
                     </div>
-                    <label>Categoria</label>
+                    <label>Categoria *</label>
                     <div className="form-group">
                         <select
                             name="categoria"
@@ -111,7 +111,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                             
                         </select>
                     </div>
-                    <label>Fecha</label>
+                    <label>Fecha *</label>
 
                     <div className="form-group">
                         <input
@@ -121,7 +121,7 @@ function AgregarEgreso({ guardarEjecutar, history, categoria }) {
                             onChange={guardarDatos}
                         />
                     </div>
-                    <legend className="text-center">Tipo de Egreso:</legend>
+                    <legend className="text-center">Tipo de Egreso: *</legend>
                     <div className="text-center">
                         <div className="form-check form-check-inline">
                             <input

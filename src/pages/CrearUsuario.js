@@ -66,7 +66,7 @@ function CrearUsuario({ history }) {
                         type="text"
                         id="nombre"
                         name="nombre"
-                        placeholder="Nombre"
+                        placeholder="Nombre *"
                         onChange={guardarDatos}
                         required
                     />
@@ -74,7 +74,7 @@ function CrearUsuario({ history }) {
                         type="text"
                         id="apellido"
                         name="apellidos"
-                        placeholder="Apellidos"
+                        placeholder="Apellidos *"
                         onChange={guardarDatos}
                         required
                     />
@@ -82,7 +82,7 @@ function CrearUsuario({ history }) {
                         type="email"
                         id="email"
                         name="email"
-                        placeholder="Email"
+                        placeholder="Email *"
                         onChange={guardarDatos}
                         required
                     />
@@ -90,7 +90,7 @@ function CrearUsuario({ history }) {
                         type="text"
                         id="usuario"
                         name="userName"
-                        placeholder="Usuario"
+                        placeholder="Usuario *"
                         onChange={guardarDatos}
                         required
                     />
@@ -98,7 +98,7 @@ function CrearUsuario({ history }) {
                         type="password"
                         id="contraseña"
                         name="password"
-                        placeholder="Contraseña"
+                        placeholder="Contraseña *"
                         onChange={guardarDatos}
                         required
                     />
